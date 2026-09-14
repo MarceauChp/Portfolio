@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marceau Chapon | Géographe &amp; Géomaticien | Science des données spatiales</title>
+    <meta name="description" content="Portfolio de Marceau Chapon, Géographe et Géomaticien (Master 1 GeoData Paris). Données spatiales, modélisation statistique avancée (GLMM), télédétection satellitaire, analyse territoriale critique. R, PostGIS, QGIS." />
+    <meta name="keywords" content="géographe, géomaticien, QGIS, PostGIS, R, GLMM, télédétection, urbanisme, SIG, analyse territoriale, Avignon, Aix-Marseille, GeoData Paris" />
+    <meta name="author" content="Marceau Chapon" />
+
+    <!-- Theme initialization script (prevents flash of wrong theme, default is light retro beige) -->
+    <script>
+      (function() {
+        try {
+          const stored = localStorage.getItem('theme');
+          if (stored === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Open Graph / Meta Réseaux -->
+    <meta property="og:title" content="Marceau Chapon | Géographe &amp; Géomaticien" />
+    <meta property="og:description" content="Science des données spatiales, analyse territoriale critique et pipelines reproductibles. R, PostGIS, QGIS." />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon SVG Dynamique (CAD Workstation style) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b2545'/%3E%3Crect x='1' y='1' width='30' height='30' fill='none' stroke='%2338bdf8' stroke-width='1.5'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='monospace' font-weight='800' font-size='13' fill='%2338bdf8'%3EMC%3C/text%3E%3C/svg%3E" />
+
+    <!-- Google Fonts: Space Grotesk (Titles) + JetBrains Mono (Tech body) + Silkscreen (Pixel chips/micro-labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-bp-canvas text-bp-text antialiased selection:bg-retro-cyan/30 selection:text-bp-text transition-colors duration-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
