@@ -1,0 +1,731 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ══════════════════════════════════════════════
+       LIGHT MODE: Retro Beige CAD / Millimetric Paper
+       ══════════════════════════════════════════════ */
+    --bp-canvas:       #f5f0e1;
+    --bp-surface:      #eae3cd;
+    --bp-elevated:     #ded5be;
+    --bp-panel:        #e5ddc5;
+    --bp-line:         #0284c7;
+    --bp-grid:         rgba(160, 130, 95, 0.16);
+    --bp-grid-strong:  rgba(160, 130, 95, 0.35);
+    --bp-text:         #0f172a;
+    --bp-muted:        #1e293b;
+    --bp-dim:          #334155;
+    --bp-border:       rgba(120, 90, 60, 0.35);
+    --bp-border-strong: rgba(120, 90, 60, 0.60);
+    --bp-glow:         rgba(180, 83, 9, 0.12);
+
+    --retro-cyan:      #0284c7;
+    --retro-yellow:    #b45309;
+    --retro-green:     #15803d;
+    --retro-red:       #dc2626;
+    --retro-white:     #0f172a;
+
+    --bevel-light:     #ffffff;
+    --bevel-dark:      #baa888;
+    --bevel-mid:       #d8cbab;
+
+    /* Polychrome Theme Accents (High Contrast in Light Mode) */
+    --terracotta-bg:     #ffedd5;
+    --terracotta-border: #ea580c;
+    --terracotta-text:   #9a3412;
+
+    --ochre-bg:          #fef3c7;
+    --ochre-border:      #d97706;
+    --ochre-text:        #92400e;
+
+    --forest-bg:         #dcfce7;
+    --forest-border:     #16a34a;
+    --forest-text:       #166534;
+
+    --cobalt-bg:         #dbeafe;
+    --cobalt-border:     #2563eb;
+    --cobalt-text:       #1e40af;
+
+    --plum-bg:           #f3e8ff;
+    --plum-border:       #9333ea;
+    --plum-text:         #6b21a8;
+  }
+
+  .dark {
+    /* ══════════════════════════════════════════════
+       DARK MODE: Blueprint Cyanotype Nuit
+       ══════════════════════════════════════════════ */
+    --bp-canvas:       #07152b;
+    --bp-surface:      #0b2545;
+    --bp-elevated:     #0e3063;
+    --bp-panel:        #0a1e3d;
+    --bp-line:         #38bdf8;
+    --bp-grid:         rgba(56, 189, 248, 0.08);
+    --bp-grid-strong:  rgba(56, 189, 248, 0.15);
+    --bp-text:         #f8fafc;
+    --bp-muted:        #94a3b8;
+    --bp-dim:          #64748b;
+    --bp-border:       rgba(56, 189, 248, 0.18);
+    --bp-border-strong: rgba(56, 189, 248, 0.35);
+    --bp-glow:         rgba(56, 189, 248, 0.2);
+
+    --retro-cyan:      #38bdf8;
+    --retro-yellow:    #facc15;
+    --retro-green:     #4ade80;
+    --retro-red:       #f87171;
+    --retro-white:     #f8fafc;
+
+    --bevel-light:     #5b9bd5;
+    --bevel-dark:      #041028;
+    --bevel-mid:       #1a3a5c;
+
+    /* Polychrome Theme Accents (Luminous in Dark Mode) */
+    --terracotta-bg:     rgba(194, 65, 12, 0.22);
+    --terracotta-border: rgba(249, 115, 22, 0.55);
+    --terracotta-text:   #fdba74;
+
+    --ochre-bg:          rgba(180, 83, 9, 0.22);
+    --ochre-border:      rgba(245, 158, 11, 0.55);
+    --ochre-text:        #fcd34d;
+
+    --forest-bg:         rgba(21, 128, 61, 0.22);
+    --forest-border:     rgba(34, 197, 94, 0.55);
+    --forest-text:       #86efac;
+
+    --cobalt-bg:         rgba(29, 78, 216, 0.22);
+    --cobalt-border:     rgba(59, 130, 246, 0.55);
+    --cobalt-text:       #93c5fd;
+
+    --plum-bg:           rgba(126, 34, 206, 0.22);
+    --plum-border:       rgba(168, 85, 247, 0.55);
+    --plum-text:         #d8b4fe;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bp-canvas);
+    color: var(--bp-text);
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    background-color: var(--bp-canvas);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* ── Millimetric / Blueprint Grid Background ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      /* Fine grid 10px */
+      linear-gradient(var(--bp-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bp-grid) 1px, transparent 1px),
+      /* Major grid 50px */
+      linear-gradient(var(--bp-grid-strong) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bp-grid-strong) 1px, transparent 1px);
+    background-size:
+      10px 10px,
+      10px 10px,
+      50px 50px,
+      50px 50px;
+    opacity: 0.75;
+  }
+
+  /* ── Crosshair Reticles at grid intersections (every 50px) ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Cline x1='25' y1='20' x2='25' y2='30' stroke='%238c6d46' stroke-width='0.75' opacity='0.35'/%3E%3Cline x1='20' y1='25' x2='30' y2='25' stroke='%238c6d46' stroke-width='0.75' opacity='0.35'/%3E%3C/svg%3E");
+    background-size: 50px 50px;
+    opacity: 0.7;
+  }
+
+  .dark body::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Cline x1='25' y1='20' x2='25' y2='30' stroke='%2338bdf8' stroke-width='0.5' opacity='0.25'/%3E%3Cline x1='20' y1='25' x2='30' y2='25' stroke='%2338bdf8' stroke-width='0.5' opacity='0.25'/%3E%3C/svg%3E");
+    opacity: 0.8;
+  }
+
+  /* ── Subtle CRT Scanline Overlay ── */
+  #root::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.02) 2px,
+      rgba(0, 0, 0, 0.02) 4px
+    );
+  }
+
+  ::selection {
+    background-color: var(--retro-cyan);
+    color: #ffffff;
+  }
+
+  /* ── CAD Scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bp-canvas);
+    border-left: 1px solid var(--bevel-mid);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--bp-surface);
+    border: 1px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--bp-line);
+  }
+}
+
+@layer components {
+  /* ══════════════════════════════════════════════
+     16-BIT BEVEL WINDOW SYSTEM (LIGHT & DARK AWARE)
+     ══════════════════════════════════════════════ */
+
+  /* ── Raised Window (main container) ── */
+  .bevel-window {
+    background-color: var(--bp-surface);
+    border: 2px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+    box-shadow: 
+      inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25),
+      0 3px 10px rgba(0, 0, 0, 0.12);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  /* ── Inset Field (text areas, images, inputs) ── */
+  .bevel-inset {
+    background-color: var(--bp-canvas);
+    border: 2px solid;
+    border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.18);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  /* ── Raised Button ── */
+  .bevel-btn {
+    background-color: var(--bp-surface);
+    border: 2px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.6875rem;
+    padding: 0.35rem 0.65rem;
+    color: var(--bp-text);
+    cursor: pointer;
+    transition: filter 0.1s ease, background-color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bevel-btn:hover {
+    filter: brightness(1.08);
+  }
+
+  .bevel-btn:active {
+    border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ── Primary Button (Cyan/Blue accent) ── */
+  .bevel-btn-primary {
+    background-color: var(--retro-cyan);
+    color: #ffffff;
+    border: 2px solid;
+    border-color: #60a5fa var(--bevel-dark) var(--bevel-dark) #60a5fa;
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.35rem 0.65rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.1s ease;
+  }
+
+  .bevel-btn-primary:hover {
+    filter: brightness(1.12);
+  }
+
+  .bevel-btn-primary:active {
+    border-color: var(--bevel-dark) #60a5fa #60a5fa var(--bevel-dark);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ── Window Title Bar ── */
+  .bevel-titlebar {
+    background: repeating-linear-gradient(
+      90deg,
+      var(--bp-elevated) 0px,
+      var(--bp-elevated) 2px,
+      var(--bp-surface) 2px,
+      var(--bp-surface) 4px
+    );
+    border-bottom: 2px solid;
+    border-color: var(--bevel-dark);
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 1.75rem;
+  }
+
+  .bevel-titlebar-text {
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.6875rem;
+    color: var(--bp-text);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Window Control Buttons [ _ ][ □ ][ X ] ── */
+  .bevel-controls {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .bevel-control-btn {
+    width: 1rem;
+    height: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bp-surface);
+    border: 1px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.5rem;
+    color: var(--bp-text);
+    line-height: 1;
+    cursor: default;
+  }
+
+  /* ── Dimension Line (Cote vectorielle de géomètre) ── */
+  .dimension-line {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.625rem;
+    color: var(--bp-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .dimension-line::before,
+  .dimension-line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--bp-line) 10%,
+      var(--bp-line) 90%,
+      transparent 100%
+    );
+    opacity: 0.45;
+  }
+
+  /* ── Retro Pixel Badge (Reserved for small tags/statuses) ── */
+  .retro-badge {
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.1875rem 0.5rem;
+    border: 1px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+    background-color: var(--bp-surface);
+    color: var(--bp-text);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  /* ── Retro Pixel Badge Inset (Effet creusé) ── */
+  .retro-badge-inset {
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.55rem;
+    border: 1.5px solid;
+    border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+    background-color: var(--bp-elevated);
+    box-shadow: inset 1px 1px 2.5px rgba(0, 0, 0, 0.22);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    line-height: 1.2;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .dark .retro-badge-inset {
+    background-color: var(--bp-canvas);
+    border-color: var(--bevel-dark) rgba(91, 155, 213, 0.3) rgba(91, 155, 213, 0.3) var(--bevel-dark);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.55);
+  }
+
+  .retro-badge-inset-cyan {
+    color: var(--cobalt-text);
+    background-color: #d6e7f7;
+    border-color: rgba(30, 64, 175, 0.5) #ffffff #ffffff rgba(30, 64, 175, 0.5);
+    box-shadow: inset 1px 1px 2.5px rgba(0, 0, 0, 0.22), inset 0 0 4px rgba(37, 99, 235, 0.1);
+  }
+  .dark .retro-badge-inset-cyan {
+    color: var(--retro-cyan);
+    background-color: #06162d;
+    border-color: #020b18 rgba(56, 189, 248, 0.35) rgba(56, 189, 248, 0.35) #020b18;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6), inset 0 0 6px rgba(56, 189, 248, 0.12);
+  }
+
+  .retro-badge-inset-emerald {
+    color: var(--forest-text);
+    background-color: #d1f2dd;
+    border-color: rgba(21, 128, 61, 0.5) #ffffff #ffffff rgba(21, 128, 61, 0.5);
+    box-shadow: inset 1px 1px 2.5px rgba(0, 0, 0, 0.22), inset 0 0 4px rgba(22, 163, 74, 0.1);
+  }
+  .dark .retro-badge-inset-emerald {
+    color: var(--retro-green);
+    background-color: #041a12;
+    border-color: #020e0a rgba(74, 222, 128, 0.35) rgba(74, 222, 128, 0.35) #020e0a;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6), inset 0 0 6px rgba(74, 222, 128, 0.12);
+  }
+
+  .retro-badge-inset-muted {
+    color: var(--bp-dim);
+    background-color: var(--bp-elevated);
+    border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+    box-shadow: inset 1px 1px 2.5px rgba(0, 0, 0, 0.2);
+  }
+  .dark .retro-badge-inset-muted {
+    color: var(--bp-muted);
+    background-color: #06152b;
+    border-color: #020b18 rgba(91, 155, 213, 0.25) rgba(91, 155, 213, 0.25) #020b18;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.55);
+  }
+
+  /* ══════════════════════════════════════════════
+     POLYCHROME 3D BEVEL TAGS (RELIEF DÉTAILLÉ)
+     ══════════════════════════════════════════════ */
+  .tag-bevel {
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    border: 2px solid;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: default;
+    transition: transform 0.12s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.55), 1px 2px 3px rgba(0, 0, 0, 0.18);
+  }
+
+  .tag-bevel:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.75), 1px 3px 5px rgba(0, 0, 0, 0.24);
+  }
+
+  .tag-bevel:active {
+    transform: translateY(1px);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+  }
+
+  /* 1. Cobalt Blue (R, Python, etc.) */
+  .tag-bevel-blue {
+    background-color: #e0edff;
+    color: #1d4ed8;
+    border-color: #ffffff #1e40af #1e40af #ffffff;
+  }
+  .dark .tag-bevel-blue {
+    background-color: #0c2340;
+    color: #93c5fd;
+    border-color: #60a5fa #051329 #051329 #60a5fa;
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), 1px 2px 4px rgba(0, 0, 0, 0.45);
+  }
+
+  /* 2. Emerald Green (QGIS, ZAN, etc.) */
+  .tag-bevel-green {
+    background-color: #dcfce7;
+    color: #15803d;
+    border-color: #ffffff #166534 #166534 #ffffff;
+  }
+  .dark .tag-bevel-green {
+    background-color: #062e1e;
+    color: #86efac;
+    border-color: #4ade80 #02140d #02140d #4ade80;
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), 1px 2px 4px rgba(0, 0, 0, 0.45);
+  }
+
+  /* 3. Terracotta Orange (GLMM, Landsat 8, etc.) */
+  .tag-bevel-orange {
+    background-color: #ffedd5;
+    color: #c2410c;
+    border-color: #ffffff #9a3412 #9a3412 #ffffff;
+  }
+  .dark .tag-bevel-orange {
+    background-color: #3b1706;
+    color: #fdba74;
+    border-color: #fb923c #1c0801 #1c0801 #fb923c;
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), 1px 2px 4px rgba(0, 0, 0, 0.45);
+  }
+
+  /* 4. Plum Purple (RPLS, MNS/MNT, SQL spatial, etc.) */
+  .tag-bevel-purple {
+    background-color: #f3e8ff;
+    color: #7e22ce;
+    border-color: #ffffff #6b21a8 #6b21a8 #ffffff;
+  }
+  .dark .tag-bevel-purple {
+    background-color: #2b0b3f;
+    color: #d8b4fe;
+    border-color: #c084fc #14041f #14041f #c084fc;
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), 1px 2px 4px rgba(0, 0, 0, 0.45);
+  }
+
+  /* 5. Cyan Teal (Filosofi, QNEAT3, PostGIS, etc.) */
+  .tag-bevel-cyan {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    border-color: #ffffff #075985 #075985 #ffffff;
+  }
+  .dark .tag-bevel-cyan {
+    background-color: #08293d;
+    color: #7dd3fc;
+    border-color: #38bdf8 #02121c #02121c #38bdf8;
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), 1px 2px 4px rgba(0, 0, 0, 0.45);
+  }
+
+  /* 6. Amber Ochre (BD TOPO, LCZ, etc.) */
+  .tag-bevel-amber {
+    background-color: #fef3c7;
+    color: #b45309;
+    border-color: #ffffff #854d0e #854d0e #ffffff;
+  }
+  .dark .tag-bevel-amber {
+    background-color: #382405;
+    color: #fde68a;
+    border-color: #facc15 #1a1002 #1a1002 #facc15;
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), 1px 2px 4px rgba(0, 0, 0, 0.45);
+  }
+
+  /* 7. Crimson Rose (Réseau viaire, etc.) */
+  .tag-bevel-rose {
+    background-color: #ffe4e6;
+    color: #be123c;
+    border-color: #ffffff #9f1239 #9f1239 #ffffff;
+  }
+  .dark .tag-bevel-rose {
+    background-color: #3b0914;
+    color: #fda4af;
+    border-color: #fb7185 #1a0308 #1a0308 #fb7185;
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), 1px 2px 4px rgba(0, 0, 0, 0.45);
+  }
+
+  /* ── Jaune / Ambre ── */
+  .retro-badge-inset-yellow,
+  .retro-badge-inset-amber {
+    color: var(--ochre-text);
+    background-color: #fdf3d6;
+    border-color: rgba(217, 119, 6, 0.5) #ffffff #ffffff rgba(217, 119, 6, 0.5);
+    box-shadow: inset 1px 1px 2.5px rgba(0, 0, 0, 0.22), inset 0 0 4px rgba(217, 119, 6, 0.1);
+  }
+  .dark .retro-badge-inset-yellow,
+  .dark .retro-badge-inset-amber {
+    color: var(--retro-yellow);
+    background-color: #241604;
+    border-color: #120901 rgba(250, 204, 21, 0.35) rgba(250, 204, 21, 0.35) #120901;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6), inset 0 0 6px rgba(250, 204, 21, 0.12);
+  }
+
+  /* ── Rouge / Terracotta ── */
+  .retro-badge-inset-red,
+  .retro-badge-inset-terracotta {
+    color: var(--terracotta-text);
+    background-color: #fee2e2;
+    border-color: rgba(220, 38, 38, 0.5) #ffffff #ffffff rgba(220, 38, 38, 0.5);
+    box-shadow: inset 1px 1px 2.5px rgba(0, 0, 0, 0.22), inset 0 0 4px rgba(220, 38, 38, 0.1);
+  }
+  .dark .retro-badge-inset-red,
+  .dark .retro-badge-inset-terracotta {
+    color: var(--retro-red);
+    background-color: #260808;
+    border-color: #140303 rgba(248, 113, 113, 0.35) rgba(248, 113, 113, 0.35) #140303;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6), inset 0 0 6px rgba(248, 113, 113, 0.12);
+  }
+
+  /* ── Violet / Pourpre ── */
+  .retro-badge-inset-violet,
+  .retro-badge-inset-purple {
+    color: var(--plum-text);
+    background-color: #f3e8ff;
+    border-color: rgba(147, 51, 234, 0.5) #ffffff #ffffff rgba(147, 51, 234, 0.5);
+    box-shadow: inset 1px 1px 2.5px rgba(0, 0, 0, 0.22), inset 0 0 4px rgba(147, 51, 234, 0.1);
+  }
+  .dark .retro-badge-inset-violet,
+  .dark .retro-badge-inset-purple {
+    color: #d8b4fe;
+    background-color: #1c082e;
+    border-color: #0f0319 rgba(168, 85, 247, 0.35) rgba(168, 85, 247, 0.35) #0f0319;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6), inset 0 0 6px rgba(168, 85, 247, 0.12);
+  }
+
+  /* ── Engineering Title Block (Cartouche Footer) ── */
+  .title-block {
+    border: 2px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+    background-color: var(--bp-surface);
+  }
+
+  .title-block-cell {
+    border: 1px solid var(--bevel-mid);
+    padding: 0.5rem 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+  }
+
+  .title-block-label {
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--bp-dim);
+    display: block;
+    margin-bottom: 0.125rem;
+  }
+
+  .title-block-value {
+    color: var(--retro-cyan);
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  /* ── Modern Display Headings (Space Grotesk) ── */
+  .font-display {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* ── Technical Mono (JetBrains Mono) ── */
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Pixel Chips & Micro-Labels (Silkscreen) ── */
+  .font-pixel {
+    font-family: 'Silkscreen', monospace;
+  }
+
+  /* ── Text body size utility (enforced 18px + 1.75 line-height) ── */
+  .text-body {
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+
+  /* ── Strict Justification for Technical Documentation ── */
+  .text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+}
+
+/* ── Hardware LED Blinking Animation ── */
+@keyframes led-hardware-blink {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px #22c55e, 0 0 3px #86efac;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.15;
+    box-shadow: none;
+    transform: scale(0.92);
+  }
+}
+
+.animate-led {
+  animation: led-hardware-blink 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ── Gentle Golden Sparkle Animation ── */
+@keyframes sparkle-shimmer {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 2px rgba(217, 119, 6, 0.4));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.22) rotate(12deg);
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.95)) drop-shadow(0 0 11px rgba(251, 191, 36, 0.65));
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle-shimmer 2.4s ease-in-out infinite;
+  display: inline-block;
+  transform-origin: center;
+}
+
+/* ── Vertical Timeline Axis with Temporal Recency Opacity Gradient ── */
+.timeline-axis-line {
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.85) 20%,
+    rgba(0, 0, 0, 0.5) 55%,
+    rgba(0, 0, 0, 0.22) 80%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.85) 20%,
+    rgba(0, 0, 0, 0.5) 55%,
+    rgba(0, 0, 0, 0.22) 80%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+}
+
+
