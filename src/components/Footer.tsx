@@ -46,7 +46,7 @@ export default function Footer(): React.ReactElement {
             </div>
             <div className="title-block-cell">
               <span className="title-block-label">Statut</span>
-              <span className="title-block-value">Étudiant</span>
+              <span className="title-block-value text-forest dark:text-emerald-400 font-semibold">Dispo. Avril 2027</span>
             </div>
             <div className="title-block-cell">
               <span className="title-block-label">Date Édition</span>

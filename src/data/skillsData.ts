@@ -16,9 +16,9 @@ export const skillsData: SkillsData = {
         },
         {
           name: "Modélisation GLMM",
-          level: "Expert",
+          level: "Avancé",
           highlight: true,
-          description: "Modèles linéaires généralisés à effets mixtes. J'ai notamment appris, maîtrisé, puis utilisé cette méthode lors de mon mémoire de Master 1 en réalisant un modèle à intercept aléatoire communal sur 55 000 logements."
+          description: "Modèles linéaires généralisés à effets mixtes sous R (lme4). Mise en œuvre d'un modèle logistique à intercept aléatoire communal sur 55 758 logements (calcul d'ICC, tests LRT et sélection descendante)."
         },
         {
           name: "R",

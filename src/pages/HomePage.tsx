@@ -112,15 +112,15 @@ export default function HomePage(): React.ReactElement {
               </span>
             </motion.div>
 
-            {/* First-person Narrative Bio: FULL WIDTH & STRICTLY JUSTIFIED */}
+            {/* First-person Narrative Bio: Aéré, lisible et naturel */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.16 }}
-              className="space-y-4 mb-8 text-body text-slate-900 dark:text-slate-100 font-mono leading-relaxed w-full"
+              className="space-y-3.5 mb-8 text-slate-800 dark:text-slate-200 font-mono text-sm sm:text-base leading-relaxed max-w-4xl"
             >
               {profileData.bio.map((paragraph, idx) => (
-                <p key={idx} className="border-l-2 border-bevel-mid pl-4 pr-1 text-justify hyphens-auto font-medium">
+                <p key={idx} className="border-l-2 border-bevel-mid hover:border-retro-cyan/60 pl-4 py-0.5 text-left transition-colors font-medium">
                   {paragraph}
                 </p>
               ))}

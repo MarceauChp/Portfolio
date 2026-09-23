@@ -141,8 +141,8 @@ icc(mod_glmm)`
     title: "Analyse de pression d'accès aux espaces d'un territoire pauvre en données : l'Indice de Pression d'Accès (IPA)",
     shortTitle: "Mesure de l'accessibilité : l'Indice de Pression d'Accès",
     category: "Recherche & Publication",
-    statusBadge: "Article en cours de rédaction",
-    statusText: "Manuscrit en révision",
+    statusBadge: "Publication en préparation",
+    statusText: "Recherche méthodologique & article scientifique en préparation",
     statusColor: "cyan",
     thumbnail: "/assets/img/projet_ipa.png",
     subtitle: "J'ai conçu une méthode alternative et parcimonieuse au modèle 2SFCA pour diagnostiquer les inégalités d'accès aux services publics lorsque les données d'offre sont indisponibles. L'IPA formalise la notion de double peine territoriale : éloignement kilométrique cumulé à la saturation démographique à destination.",
@@ -150,7 +150,7 @@ icc(mod_glmm)`
     tags: ["R", "QNEAT3", "QGIS", "Réseau viaire"],
     summaryFooter: "Avignon | 18-24 ans | Accès aux pôles universitaires",
     meta: [
-      { label: "Statut", value: "Manuscrit en révision" },
+      { label: "Statut", value: "Manuscrit en préparation pour soumission" },
       { label: "Cadre", value: "Recherche en géographie des services" },
       { label: "Territoire", value: "Avignon" },
       { label: "Méthode principale", value: "Réseau QNEAT3 + R" }
@@ -236,15 +236,15 @@ icc(mod_glmm)`
     shortTitle: "Analyse du climat urbain dans le Grand Avignon",
     category: "Commande publique",
     statusBadge: "Commande publique",
-    statusText: "Rapport commandé par le Grand Avignon pour projet de fin d'année | 164 pages | 2024-2025",
+    statusText: "Rapport d'étude commandé par le Grand Avignon (Projet d'atelier L3) | 164 pages | 2024-2025",
     statusColor: "emerald",
     thumbnail: "/assets/img/projet_chaleur.png",
     subtitle: "En tant que responsable du pôle SIG et modélisation, j'ai piloté la chaîne géomatique complète commandée par la Direction Transition et Mobilités du Grand Avignon : télédétection Landsat multitemporelle, classification LCZ à 50 m, modélisation biométéorologique du Heat Index, et dimensionnement d'un réseau de 120 capteurs IoT.",
     excerpt: "Commandé par le Grand Avignon dans le cadre du PNACC-3, ce rapport de 164 pages couvre la cartographie thermique de surface par télédétection Landsat, la classification LCZ, l'analyse multivariée des vulnérabilités (ACP + CAH) et l'identification de 130 îlots de fraîcheur connectables. Les zones commerciales concentrent 72,1 % de la surface cumulée des îlots de chaleur.",
     tags: ["PostGIS", "Landsat 8", "QGIS Model Builder", "LCZ"],
-    summaryFooter: "Grand Avignon | LCZ | PostGIS | QGIS",
+    summaryFooter: "Grand Avignon | Rapport 164 p. | 72,1% îlots de chaleur com. | LCZ",
     meta: [
-      { label: "Statut", value: "Commande publique | 2024-2025" },
+      { label: "Cadre", value: "Commande publique (Atelier L3)" },
       { label: "Commanditaire", value: "Grand Avignon | Direction Transition" },
       { label: "Territoire", value: "Grand Avignon : 16 communes" },
       { label: "Méthodes", value: "Landsat / LCZ / ACP/CAH / PostGIS", isMono: true }

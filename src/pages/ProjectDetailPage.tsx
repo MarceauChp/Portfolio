@@ -220,7 +220,7 @@ export default function ProjectDetailPage(): React.ReactElement {
             {project.title}
           </h1>
 
-          <p className="text-body text-slate-900 dark:text-slate-100 font-mono leading-relaxed w-full mb-6 text-justify hyphens-auto font-medium">
+          <p className="text-body text-slate-900 dark:text-slate-100 font-mono leading-relaxed w-full mb-6 text-left font-medium">
             {project.subtitle}
           </p>
 
@@ -273,6 +273,72 @@ export default function ProjectDetailPage(): React.ReactElement {
           </div>
         </div>
       </header>
+
+      {/* ── Visual Showcase & Key KPIs (Kill Shot immédiat) ── */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+        <div className="bevel-window p-4 sm:p-6">
+          <div className="bevel-titlebar -mx-4 -mt-4 sm:-mx-6 sm:-mt-6 mb-4">
+            <div className="flex items-center gap-2 truncate">
+              <span className={`w-2.5 h-2.5 rounded-full ${theme.dot} flex-shrink-0 animate-pulse`} />
+              <span className="font-pixel text-[0.6875rem] font-bold tracking-wider uppercase text-slate-950 dark:text-white truncate">
+                LIVRABLE CARTOGRAPHIQUE MAJEUR &amp; INDICATEURS CLÉS
+              </span>
+            </div>
+            <span className="text-[0.625rem] font-pixel text-slate-600 dark:text-bp-dim hidden sm:inline">
+              [ APERÇU HAUTE DÉFINITION ]
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            {/* Interactive Image Frame */}
+            <div className="lg:col-span-8">
+              <div
+                onClick={() => setLightboxData({
+                  isOpen: true,
+                  src: project.thumbnail,
+                  title: project.shortTitle,
+                  caption: project.excerpt
+                })}
+                className="relative group cursor-zoom-in overflow-hidden p-2 bevel-inset max-h-[440px] flex items-center justify-center bg-bp-canvas"
+              >
+                <img
+                  src={project.thumbnail}
+                  alt={project.title}
+                  loading="eager"
+                  className="w-full h-auto max-h-[420px] object-contain transform transition-transform duration-200 group-hover:scale-[1.01]"
+                />
+                <div className="absolute inset-0 bg-bp-canvas/75 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-bp-text font-pixel text-xs">
+                  <ZoomIn className="w-4 h-4 text-retro-cyan" />
+                  <span>[ CLIQUER POUR AGRANDIR PLEINE RÉSOLUTION ]</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Key KPI Chips Column */}
+            <div className="lg:col-span-4 flex flex-col justify-center gap-3">
+              <div className="dimension-line mb-1">
+                SYNTHÈSE MÉTRIQUE DU DOSSIER
+              </div>
+              {project.summaryFooter.split('|').map((metric, idx) => {
+                const trimmed = metric.trim();
+                return (
+                  <div key={idx} className="bevel-inset p-3.5 border-l-4 border-l-retro-cyan">
+                    <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block mb-1">
+                      Métrique 0{idx + 1}
+                    </span>
+                    <span className="font-mono text-sm sm:text-base font-bold text-slate-950 dark:text-white">
+                      {trimmed}
+                    </span>
+                  </div>
+                );
+              })}
+              <p className="text-[0.75rem] font-mono text-bp-muted leading-relaxed pt-1">
+                Visualisation cartographique et modélisation détaillée documentées au fil des 4 phases méthodologiques ci-dessous.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Main Content + Sticky TOC */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
