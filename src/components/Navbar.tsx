@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Download, Menu, X } from 'lucide-react';
-import { profileData } from '../data/profileData';
+import { Download, Menu, X, Compass } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { getProfileData } from '../data/localizedData';
 import ThemeToggle from './ThemeToggle';
+import LanguageSelector from './LanguageSelector';
 
 interface NavLink {
   label: string;
@@ -11,6 +13,8 @@ interface NavLink {
 }
 
 export default function Navbar(): React.ReactElement {
+  const { t, i18n } = useTranslation();
+  const profile = getProfileData(i18n.language);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -28,10 +32,10 @@ export default function Navbar(): React.ReactElement {
   }, [location]);
 
   const navLinks: NavLink[] = [
-    { label: "Projets", href: "/#projets" },
-    { label: "Compétences", href: "/#competences" },
-    { label: "Parcours", href: "/#parcours" },
-    { label: "Contact", href: "/#contact" }
+    { label: t('nav.projects', "Projets"), href: "/#projets" },
+    { label: t('nav.skills', "Compétences"), href: "/#competences" },
+    { label: t('nav.career', "Parcours"), href: "/#parcours" },
+    { label: t('nav.contact', "Contact"), href: "/#contact" }
   ];
 
   const handleNavClick = (href: string): void => {
@@ -68,7 +72,7 @@ export default function Navbar(): React.ReactElement {
                 MC
               </div>
               <span className="font-display font-bold text-xs sm:text-sm text-bp-text group-hover:text-retro-cyan transition-colors tracking-tight">
-                {profileData.name} <span className="font-normal text-bp-muted font-mono text-xs hidden sm:inline">| {profileData.role}</span>
+                {profile.name} <span className="font-normal text-bp-muted font-mono text-xs hidden sm:inline">| {profile.role}</span>
               </span>
             </Link>
 
@@ -95,9 +99,23 @@ export default function Navbar(): React.ReactElement {
                   {link.label}
                 </Link>
               ))}
+
+              {/* Nouveau Bouton : Cartographie Interactive */}
+              <Link
+                to="/cartographie"
+                className={`bevel-btn text-[0.6875rem] font-mono flex items-center gap-1.5 px-2.5 py-1 transition-all ${
+                  location.pathname === '/cartographie'
+                    ? 'bevel-btn-primary font-bold'
+                    : 'text-retro-cyan border-retro-cyan/40 hover:border-retro-cyan bg-retro-cyan/10 hover:bg-retro-cyan/20'
+                }`}
+              >
+                <Compass className="w-3.5 h-3.5 text-retro-cyan" />
+                <span className="font-pixel text-[0.625rem]">{t('nav.interactiveMap', 'CARTO INTERACTIVE')}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-retro-cyan animate-pulse" />
+              </Link>
             </nav>
 
-            {/* Right side: Status + Theme Toggle + CV */}
+            {/* Right side: Status + Language + Theme Toggle + CV */}
             <div className="hidden md:flex items-center gap-2">
               {/* Availability Signal with bevel-inset carved case + pulsing green hardware LED */}
               <div className="bevel-inset flex items-center gap-2 px-2.5 py-1 text-[0.5625rem] font-pixel uppercase tracking-wider text-forest font-bold bg-forest-bg border border-forest-border">
@@ -105,35 +123,39 @@ export default function Navbar(): React.ReactElement {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_#22c55e]" />
                 </span>
-                <span>DISPONIBLE</span>
+                <span>{t('nav.available', 'DISPONIBLE')}</span>
               </div>
+
+              {/* Language Selector Dropdown with cute bevel */}
+              <LanguageSelector />
 
               {/* Theme Toggle Button */}
               <ThemeToggle />
 
               {/* CV Download Button */}
               <a
-                href={profileData.contacts.cvPdf}
+                href={profile.contacts.cvPdf}
                 download="CV_Marceau_Chapon.pdf"
                 className="bevel-btn-primary text-[0.625rem] flex items-center gap-1"
               >
                 <Download className="w-3 h-3" />
-                <span>CV.PDF</span>
+                <span>{t('nav.downloadCv', 'CV.PDF')}</span>
               </a>
             </div>
 
             {/* Mobile controls */}
             <div className="flex items-center gap-1.5 md:hidden">
+              <LanguageSelector isCompact={true} />
               <ThemeToggle />
 
               <a
-                href={profileData.contacts.cvPdf}
+                href={profile.contacts.cvPdf}
                 download="CV_Marceau_Chapon.pdf"
-                aria-label="Télécharger CV"
+                aria-label={t('hero.btnDownloadCv', 'Télécharger CV')}
                 className="bevel-btn-primary text-[0.5625rem] flex items-center gap-1 px-2 py-1"
               >
                 <Download className="w-3 h-3" />
-                <span>CV</span>
+                <span>{t('nav.downloadCvShort', 'CV')}</span>
               </a>
 
               <button
@@ -160,7 +182,7 @@ export default function Navbar(): React.ReactElement {
           >
             <div className="bevel-window mt-1 p-3">
               <div className="bevel-titlebar mb-2">
-                <span className="bevel-titlebar-text">Navigation</span>
+                <span className="bevel-titlebar-text">{t('nav.mobileNavTitle', 'Navigation')}</span>
                 <div className="bevel-controls">
                   <button onClick={() => setMobileMenuOpen(false)} className="bevel-control-btn">×</button>
                 </div>
@@ -171,10 +193,22 @@ export default function Navbar(): React.ReactElement {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_#22c55e]" />
                 </span>
-                <span>Disponible : Thèse & Bureaux d'études</span>
+                <span>{t('nav.availableLong', "Disponible : Thèse & Bureaux d'études")}</span>
               </div>
 
               <div className="flex flex-col gap-1 pt-2 border-t border-bevel-mid">
+                <Link
+                  to="/cartographie"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="bevel-btn text-left text-[0.6875rem] w-full text-retro-cyan font-bold flex items-center justify-between"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <Compass className="w-3.5 h-3.5" />
+                    <span>{t('nav.interactiveMapFull', 'Cartographie interactive')}</span>
+                  </span>
+                  <span className="font-pixel text-[0.5625rem]">OK</span>
+                </Link>
+
                 {navLinks.map((link) => (
                   <Link
                     key={link.label}
@@ -189,12 +223,12 @@ export default function Navbar(): React.ReactElement {
 
               <div className="pt-2 mt-2 border-t border-bevel-mid">
                 <a
-                  href={profileData.contacts.cvPdf}
+                  href={profile.contacts.cvPdf}
                   download="CV_Marceau_Chapon.pdf"
                   className="bevel-btn-primary text-[0.6875rem] flex items-center justify-center gap-2 w-full py-2"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Télécharger mon CV (PDF)</span>
+                  <Download className="w-3 h-3" />
+                  <span>{t('hero.btnDownloadCv', 'Télécharger mon CV (PDF)')}</span>
                 </a>
               </div>
             </div>

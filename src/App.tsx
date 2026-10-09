@@ -7,6 +7,7 @@ import ScrollToTop from './components/ScrollToTop';
 import BackToTopButton from './components/BackToTopButton';
 import HomePage from './pages/HomePage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
+import InteractiveMapPage from './pages/InteractiveMapPage';
 
 export default function App(): React.ReactElement {
   return (
@@ -18,6 +19,7 @@ export default function App(): React.ReactElement {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/cartographie" element={<InteractiveMapPage />} />
             <Route path="/projet/:slug" element={<ProjectDetailPage />} />
             <Route path="*" element={<HomePage />} />
           </Routes>

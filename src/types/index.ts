@@ -109,7 +109,7 @@ export interface Project {
 
 export interface SkillItem {
   name: string;
-  level: 'Expert' | 'Avancé' | 'Intermédiaire';
+  level: string;
   highlight: boolean;
   description: string;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import type { Project } from '../types';
 
 interface ProjectCardProps {
@@ -63,6 +64,7 @@ const defaultTheme: ProjectTheme = {
 };
 
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps): React.ReactElement {
+  const { t } = useTranslation();
   const theme = projectThemes[project.slug] || defaultTheme;
 
   return (
@@ -151,7 +153,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps): R
             to={`/projet/${project.slug}`}
             className="bevel-btn-primary text-[0.625rem] px-3.5 py-1.5 flex items-center gap-1.5 flex-shrink-0"
           >
-            <span>OUVRIR</span>
+            <span>{t('projects.openButton', 'OUVRIR')}</span>
             <span>▶</span>
           </Link>
         </div>

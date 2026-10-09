@@ -12,16 +12,18 @@ import {
   ExternalLink,
   Star
 } from 'lucide-react';
-import { profileData } from '../data/profileData';
-import { projectsData } from '../data/projectsData';
-import { skillsData } from '../data/skillsData';
-import { experienceData } from '../data/experienceData';
+import { useTranslation } from 'react-i18next';
+import {
+  getProfileData,
+  getProjectsData,
+  getSkillsData,
+  getExperienceData
+} from '../data/localizedData';
 import ProjectCard from '../components/ProjectCard';
 import PipelineStep from '../components/PipelineStep';
 import AnimatedSection from '../components/AnimatedSection';
 
-const CATEGORIES = ["Tous", "Recherche M1", "Commande publique", "Modélisation & 3D"] as const;
-type Category = typeof CATEGORIES[number];
+type CategoryId = 'all' | 'research' | 'public' | 'modeling';
 
 const categoryThemes: Record<string, { dot: string; title: string }> = {
   stats: {
@@ -35,11 +37,30 @@ const categoryThemes: Record<string, { dot: string; title: string }> = {
 };
 
 export default function HomePage(): React.ReactElement {
-  const [selectedCategory, setSelectedCategory] = useState<Category>("Tous");
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language || 'fr';
+  const profileData = getProfileData(lang);
+  const projectsData = getProjectsData(lang);
+  const skillsData = getSkillsData(lang);
+  const experienceData = getExperienceData(lang);
 
-  const filteredProjects = selectedCategory === "Tous"
+  const [selectedCategory, setSelectedCategory] = useState<CategoryId>("all");
+
+  const categoryFilters = [
+    { id: 'all' as const, label: t('projects.filters.all', "Tous") },
+    { id: 'research' as const, label: t('projects.filters.research', "Recherche M1") },
+    { id: 'public' as const, label: t('projects.filters.public', "Commande publique") },
+    { id: 'modeling' as const, label: t('projects.filters.modeling', "Modélisation & 3D") },
+  ];
+
+  const filteredProjects = selectedCategory === "all"
     ? projectsData
-    : projectsData.filter((p) => p.category === selectedCategory || (selectedCategory === "Recherche M1" && p.category.includes("Recherche")));
+    : projectsData.filter((p) => {
+        if (selectedCategory === "research") return p.category.includes("Recherche") || p.category.includes("Research");
+        if (selectedCategory === "public") return p.category.includes("Commande") || p.category.includes("Public");
+        if (selectedCategory === "modeling") return p.category.includes("Modélisation") || p.category.includes("Modeling");
+        return true;
+      });
 
   return (
     <div className="relative pt-24 pb-20 overflow-hidden">
@@ -51,7 +72,7 @@ export default function HomePage(): React.ReactElement {
 
         {/* Top dimension line (pixel font for technical mark) */}
         <div className="dimension-line mb-6">
-          Section N°1 : Présentation et résumé
+          {t('hero.dimensionTag', 'Section N°1 : Présentation et résumé')}
         </div>
 
         {/* Hero Workstation Window */}
@@ -61,7 +82,7 @@ export default function HomePage(): React.ReactElement {
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-red-600 shadow-[0_0_8px_rgba(239,68,68,0.9)] dark:bg-red-500 flex-shrink-0 animate-pulse" />
               <span className="font-pixel text-[0.6875rem] font-bold tracking-wider uppercase text-red-600 dark:text-red-400">
-                PRÉSENTATION
+                {t('hero.titlebar', 'PRÉSENTATION')}
               </span>
             </div>
             <div className="bevel-controls">
@@ -138,7 +159,7 @@ export default function HomePage(): React.ReactElement {
                 className="bevel-btn-primary px-5 py-2.5 text-xs flex items-center gap-2"
               >
                 <FolderKanban className="w-4 h-4" />
-                <span>VOIR MES PROJETS ▶</span>
+                <span>{t('hero.btnProjects', 'VOIR MES PROJETS ▶')}</span>
               </a>
 
               <a
@@ -148,7 +169,7 @@ export default function HomePage(): React.ReactElement {
                 className="bevel-btn px-4 py-2.5 text-xs flex items-center gap-2 hover:text-cobalt hover:border-cobalt/40"
               >
                 <Github className="w-4 h-4" />
-                <span>GITHUB</span>
+                <span>{t('hero.btnGithub', 'GITHUB')}</span>
               </a>
 
               <a
@@ -156,7 +177,7 @@ export default function HomePage(): React.ReactElement {
                 className="bevel-btn px-4 py-2.5 text-xs flex items-center gap-2 hover:text-forest hover:border-forest/40"
               >
                 <Mail className="w-4 h-4" />
-                <span>CONTACT</span>
+                <span>{t('hero.btnContact', 'CONTACT')}</span>
               </a>
 
               <a
@@ -165,7 +186,7 @@ export default function HomePage(): React.ReactElement {
                 className="bevel-btn px-4 py-2.5 text-xs flex items-center gap-2 text-terracotta hover:border-terracotta/40"
               >
                 <Download className="w-4 h-4" />
-                <span>TÉLÉCHARGER CV (PDF)</span>
+                <span>{t('hero.btnDownloadCv', 'TÉLÉCHARGER CV (PDF)')}</span>
               </a>
             </motion.div>
           </div>
@@ -173,20 +194,36 @@ export default function HomePage(): React.ReactElement {
           {/* Technical Metadata Inset Bar at bottom of Hero with polychrome accents */}
           <div className="mt-10 pt-4 border-t border-bevel-mid grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
             <div className="bevel-inset p-3">
-              <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block">ÉTABLISSEMENT</span>
-              <span className="font-mono text-xs text-slate-900 dark:text-white font-bold">Univ. Gustave Eiffel / ENSG</span>
+              <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block">
+                {t('hero.metaInstitutionLabel', 'ÉTABLISSEMENT')}
+              </span>
+              <span className="font-mono text-xs text-slate-900 dark:text-white font-bold">
+                {t('hero.metaInstitutionValue', 'Univ. Gustave Eiffel / ENSG')}
+              </span>
             </div>
             <div className="bevel-inset p-3">
-              <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block">SPÉCIALITÉ</span>
-              <span className="font-mono text-xs text-cobalt font-bold">Science des données spatiales</span>
+              <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block">
+                {t('hero.metaSpecialtyLabel', 'SPÉCIALITÉ')}
+              </span>
+              <span className="font-mono text-xs text-cobalt font-bold">
+                {t('hero.metaSpecialtyValue', 'Science des données spatiales')}
+              </span>
             </div>
             <div className="bevel-inset p-3">
-              <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block">LOCALISATION</span>
-              <span className="font-mono text-xs text-terracotta font-bold">Île-de-France &amp; Alès</span>
+              <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block">
+                {t('hero.metaLocationLabel', 'LOCALISATION')}
+              </span>
+              <span className="font-mono text-xs text-terracotta font-bold">
+                {t('hero.metaLocationValue', 'Île-de-France & Alès')}
+              </span>
             </div>
             <div className="bevel-inset p-3">
-              <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block">CE QUE JE RECHERCHE</span>
-              <span className="font-mono text-xs text-forest font-bold">Stage M1 (3 à 5 mois) / CDD</span>
+              <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block">
+                {t('hero.metaLookingForLabel', 'CE QUE JE RECHERCHE')}
+              </span>
+              <span className="font-mono text-xs text-forest font-bold">
+                {t('hero.metaLookingForValue', 'Stage M1 (3 à 5 mois) / CDD')}
+              </span>
             </div>
           </div>
         </div>
@@ -200,31 +237,31 @@ export default function HomePage(): React.ReactElement {
 
           {/* Dimension Line Separator */}
           <div className="dimension-line mb-8">
-            Section N°2 : Projets géomatiques &amp; études territoriales
+            {t('projects.dimensionTag', 'Section N°2 : Projets géomatiques & études territoriales')}
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
               <h2 className="font-display font-bold text-2xl sm:text-4xl text-slate-950 dark:text-white tracking-tight">
-                Projets géomatiques
+                {t('projects.title', 'Projets géomatiques')}
               </h2>
               <p className="text-body text-slate-800 dark:text-slate-200 font-mono max-w-3xl mt-2 font-medium">
-                Ces quatre projets ont été produits lors de mon parcours universitaire, ou sont le fruit de travaux autodidactes. En partant d'une problématique territoriale concrète, chacun d'eux mobilise des méthodes rigoureuses et documente les limites méthodologiques associées. Vous pouvez consulter en détail ces projets ci-dessous.
+                {t('projects.description', "Ces quatre projets ont été produits lors de mon parcours universitaire, ou sont le fruit de travaux autodidactes. En partant d'une problématique territoriale concrète, chacun d'eux mobilise des méthodes rigoureuses et documente les limites méthodologiques associées. Vous pouvez consulter en détail ces projets ci-dessous.")}
               </p>
             </div>
 
             {/* Category Filter as 16-bit bevel buttons */}
             <div className="flex flex-wrap gap-1.5 self-start md:self-auto p-1 bevel-inset">
-              {CATEGORIES.map((cat) => (
+              {categoryFilters.map((cat) => (
                 <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`text-[0.625rem] font-pixel uppercase px-3 py-1.5 transition-colors ${selectedCategory === cat
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`text-[0.625rem] font-pixel uppercase px-3 py-1.5 transition-colors ${selectedCategory === cat.id
                     ? "bevel-btn-primary"
                     : "text-slate-700 dark:text-bp-muted hover:text-slate-950 dark:hover:text-white bg-transparent"
                     }`}
                 >
-                  {cat}
+                  {cat.label}
                 </button>
               ))}
             </div>
@@ -247,15 +284,15 @@ export default function HomePage(): React.ReactElement {
 
           {/* Dimension Line Separator */}
           <div className="dimension-line mb-8">
-            Section N°3 : Compétences méthodologiques &amp; outils
+            {t('skills.dimensionTag', 'Section N°3 : Compétences méthodologiques & outils')}
           </div>
 
           <div className="mb-10">
             <h2 className="font-display font-bold text-2xl sm:text-4xl text-slate-950 dark:text-white tracking-tight">
-              Mes compétences & outils
+              {t('skills.title', 'Mes compétences & outils')}
             </h2>
             <p className="text-body text-slate-800 dark:text-slate-200 font-mono max-w-3xl mt-2 font-medium">
-              Lors de mon parcours académique et professionnel, j'ai eu l'opportunité d'apprendre et de maîtriser une large gamme d'outils et de méthodes en géomatique et en science des données. Vous trouverez ci-dessous l'ensemble de mon bagage technique.
+              {t('skills.description', "Lors de mon parcours académique et professionnel, j'ai eu l'opportunité d'apprendre et de maîtriser une large gamme d'outils et de méthodes en géomatique et en science des données. Vous trouverez ci-dessous l'ensemble de mon bagage technique.")}
             </p>
           </div>
 
@@ -297,7 +334,7 @@ export default function HomePage(): React.ReactElement {
                               {item.name}
                             </span>
                             {item.highlight && (
-                              <span title="Compétence favorite" className="inline-flex items-center">
+                              <span title={t('skills.favoriteBadge', 'Compétence favorite')} className="inline-flex items-center">
                                 <Star
                                   className="w-4 h-4 sm:w-[1.125rem] sm:h-[1.125rem] fill-amber-400 text-amber-500 dark:fill-amber-400 dark:text-amber-300 animate-sparkle flex-shrink-0"
                                   aria-hidden="true"
@@ -310,9 +347,9 @@ export default function HomePage(): React.ReactElement {
                           </p>
                         </div>
                         <span
-                          className={`font-pixel text-[0.5625rem] px-2 py-0.5 self-start flex-shrink-0 border uppercase font-bold ${item.level === "Expert"
+                          className={`font-pixel text-[0.5625rem] px-2 py-0.5 self-start flex-shrink-0 border uppercase font-bold ${['Expert', 'エキスパート', '전문가', '精通'].includes(item.level)
                             ? "text-forest border-forest-border bg-forest-bg"
-                            : item.level === "Avancé"
+                            : ['Avancé', 'Advanced', '上級', '고급', '高级'].includes(item.level)
                               ? "text-cobalt border-cobalt-border bg-cobalt-bg"
                               : "text-ochre border-ochre-border bg-ochre-bg"
                             }`}
@@ -334,15 +371,21 @@ export default function HomePage(): React.ReactElement {
                 <Sparkles className="w-4 h-4 text-ochre animate-sparkle" />
               </div>
               <div>
-                <h4 className="font-display font-bold text-sm sm:text-base text-slate-950 dark:text-white">Langues de travail</h4>
+                <h4 className="font-display font-bold text-sm sm:text-base text-slate-950 dark:text-white">
+                  {t('skills.languagesTitle', 'Langues de travail')}
+                </h4>
                 <p className="text-xs sm:text-[0.8125rem] text-slate-800 dark:text-slate-200 font-mono font-medium">
-                  Français (langue maternelle) <br /> Anglais B2 (lecture de la littérature scientifique, rédaction académique et communication professionnelle).
+                  {t('skills.languagesDesc', 'Français (langue maternelle) — Anglais B2 (lecture de la littérature scientifique, rédaction académique et communication professionnelle).')}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className="retro-badge text-forest bg-forest-bg border-forest-border font-bold">FR : NATIF</span>
-              <span className="retro-badge text-cobalt bg-cobalt-bg border-cobalt-border font-bold">EN : B2 SCIENTIFIQUE</span>
+              <span className="retro-badge text-forest bg-forest-bg border-forest-border font-bold">
+                {t('skills.languagesNative', 'FR : NATIF')}
+              </span>
+              <span className="retro-badge text-cobalt bg-cobalt-bg border-cobalt-border font-bold">
+                {t('skills.languagesScientific', 'EN : B2 SCIENTIFIQUE')}
+              </span>
             </div>
           </div>
 
@@ -350,10 +393,10 @@ export default function HomePage(): React.ReactElement {
           <div>
             <div className="mb-6">
               <span className="font-pixel text-[0.6875rem] uppercase tracking-wider text-cobalt font-bold block mb-1">
-                CHAÎNE DE TRAITEMENT CLASSIQUE
+                {t('skills.pipelineTag', 'CHAÎNE DE TRAITEMENT CLASSIQUE')}
               </span>
               <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-950 dark:text-white tracking-tight">
-                Workflow type
+                {t('skills.pipelineTitle', 'Workflow type')}
               </h3>
             </div>
 
@@ -375,15 +418,15 @@ export default function HomePage(): React.ReactElement {
 
           {/* Dimension Line Separator */}
           <div className="dimension-line mb-8">
-            Section N°4 : Chronologie de mon parcours professionnel &amp; académique
+            {t('career.dimensionTag', 'Section N°4 : Chronologie de mon parcours professionnel & académique')}
           </div>
 
           <div className="mb-10">
             <span className="font-pixel text-[0.6875rem] uppercase tracking-wider text-ochre font-bold block mb-1">
-              FORMATION &amp; EXPÉRIENCES PROFESSIONNELLES
+              {t('career.categoryTag', 'FORMATION & EXPÉRIENCES PROFESSIONNELLES')}
             </span>
             <h2 className="font-display font-bold text-2xl sm:text-4xl text-slate-950 dark:text-white tracking-tight">
-              Mon parcours
+              {t('career.title', 'Mon parcours')}
             </h2>
           </div>
 
@@ -471,7 +514,7 @@ export default function HomePage(): React.ReactElement {
 
           {/* Dimension Line Separator */}
           <div className="dimension-line mb-8">
-            Section N°5 : Contact
+            {t('contact.dimensionTag', 'Section N°5 : Contact')}
           </div>
 
           <div className="bevel-window p-6 sm:p-10 mb-8">
@@ -479,7 +522,7 @@ export default function HomePage(): React.ReactElement {
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-purple-600 shadow-[0_0_8px_rgba(168,85,247,0.9)] dark:bg-purple-400 flex-shrink-0 animate-pulse" />
                 <span className="font-pixel text-[0.6875rem] font-bold tracking-wider uppercase text-[#6b21a8] dark:text-purple-300">
-                  CANAUX DE CONTACT
+                  {t('contact.titlebar', 'CANAUX DE CONTACT')}
                 </span>
               </div>
               <div className="bevel-controls">
@@ -491,10 +534,10 @@ export default function HomePage(): React.ReactElement {
 
             <div className="w-full mb-8">
               <h2 className="font-display font-bold text-2xl sm:text-4xl text-slate-950 dark:text-white tracking-tight mb-2">
-                Travaillons ensemble
+                {t('contact.title', 'Travaillons ensemble')}
               </h2>
               <p className="text-body text-slate-900 dark:text-slate-100 font-mono leading-relaxed text-justify hyphens-auto font-medium">
-                Disponible pour des opportunités de <strong className="text-slate-950 dark:text-white">stage de 3 à 5 mois (à partir du 15 avril 2027)</strong>, de CDD<strong className="text-slate-950 dark:text-white"> en tant que chargé d'études</strong>, ou de collaborations en <strong className="text-slate-950 dark:text-white">bureaux d'études territoriaux et collectivités</strong>.
+                {t('contact.intro', "Disponible pour des opportunités de stage de 3 à 5 mois (à partir du 15 avril 2027), de CDD en tant que chargé d'études, ou de collaborations en bureaux d'études territoriaux et collectivités.")}
               </p>
             </div>
 
@@ -503,13 +546,13 @@ export default function HomePage(): React.ReactElement {
               <div className="bevel-inset p-5 flex flex-col justify-between">
                 <div>
                   <span className="font-pixel text-[0.625rem] text-cobalt font-bold uppercase block mb-1">
-                    [ VOLET 01 ] RECHERCHE ACADÉMIQUE
+                    {t('contact.track1Tag', '[ VOLET 01 ] RECHERCHE ACADÉMIQUE')}
                   </span>
                   <h4 className="font-display font-bold text-base text-slate-950 dark:text-white mb-2">
-                    Projets de recherche
+                    {t('contact.track1Title', 'Projets de recherche')}
                   </h4>
                   <p className="text-xs sm:text-[0.8125rem] text-slate-900 dark:text-slate-200 font-mono leading-relaxed mb-4 text-justify hyphens-auto font-medium">
-                    Recherche sur les disparités spatiales, modélisation statistique multiniveau (GLMM, ACP, CAH, ACM, régression), politiques publiques du logement, impact climatique urbain et urbanisme favorable à la santé.
+                    {t('contact.track1Desc', 'Recherche sur les disparités spatiales, modélisation statistique multiniveau (GLMM, ACP, CAH, ACM, régression), politiques publiques du logement, impact climatique urbain et urbanisme favorable à la santé.')}
                   </p>
                 </div>
                 <a
@@ -517,20 +560,20 @@ export default function HomePage(): React.ReactElement {
                   className="bevel-btn text-[0.6875rem] text-center flex items-center justify-center gap-1.5 text-cobalt hover:bg-cobalt-bg"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                  <span>PROPOSER UN SUJET / ÉCHANGER</span>
+                  <span>{t('contact.track1Btn', 'PROPOSER UN SUJET / ÉCHANGER')}</span>
                 </a>
               </div>
 
               <div className="bevel-inset p-5 flex flex-col justify-between">
                 <div>
                   <span className="font-pixel text-[0.625rem] text-forest font-bold uppercase block mb-1">
-                    [ VOLET 02 ] Collaborations professionnelles
+                    {t('contact.track2Tag', '[ VOLET 02 ] Collaborations professionnelles')}
                   </span>
                   <h4 className="font-display font-bold text-base text-slate-950 dark:text-white mb-2">
-                    Entreprises privées, bureaux d'études &amp; collectivités
+                    {t('contact.track2Title', 'Entreprises privées, bureaux d\'études & collectivités')}
                   </h4>
                   <p className="text-xs sm:text-[0.8125rem] text-slate-900 dark:text-slate-200 font-mono leading-relaxed mb-4 text-justify hyphens-auto font-medium">
-                    Automatisation de SIG, traitement statistique sous R/Python, cartographie d'aide à la décision et diagnostics territoriaux opérationnels.
+                    {t('contact.track2Desc', 'Automatisation de SIG, traitement statistique sous R/Python, cartographie d\'aide à la décision et diagnostics territoriaux opérationnels.')}
                   </p>
                 </div>
                 <a
@@ -538,7 +581,7 @@ export default function HomePage(): React.ReactElement {
                   className="bevel-btn text-[0.6875rem] text-center flex items-center justify-center gap-1.5 text-forest hover:bg-forest-bg"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                  <span>PROPOSER UNE COLLABORATION</span>
+                  <span>{t('contact.track2Btn', 'PROPOSER UNE COLLABORATION')}</span>
                 </a>
               </div>
             </div>
@@ -546,7 +589,9 @@ export default function HomePage(): React.ReactElement {
             {/* Direct Contact Cells */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
               <div className="bevel-inset p-3.5">
-                <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block mb-1">COURRIEL DIRECT</span>
+                <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block mb-1">
+                  {t('contact.directEmail', 'COURRIEL DIRECT')}
+                </span>
                 <a
                   href={`mailto:${profileData.contacts.email}`}
                   className="font-mono text-xs sm:text-sm text-retro-cyan hover:underline truncate block font-bold"
@@ -556,7 +601,9 @@ export default function HomePage(): React.ReactElement {
               </div>
 
               <div className="bevel-inset p-3.5">
-                <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block mb-1">TÉLÉPHONE</span>
+                <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block mb-1">
+                  {t('contact.phone', 'TÉLÉPHONE')}
+                </span>
                 <a
                   href={`tel:${profileData.contacts.phone.replace(/\s+/g, '')}`}
                   className="font-mono text-xs sm:text-sm text-slate-950 dark:text-white hover:text-retro-cyan font-bold"
@@ -566,7 +613,9 @@ export default function HomePage(): React.ReactElement {
               </div>
 
               <div className="bevel-inset p-3.5">
-                <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block mb-1">RÉSEAUX &amp; CODE</span>
+                <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block mb-1">
+                  {t('contact.socials', 'RÉSEAUX & CODE')}
+                </span>
                 <div className="flex items-center gap-3 font-mono text-xs sm:text-sm">
                   <a
                     href={profileData.contacts.github}

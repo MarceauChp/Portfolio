@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
-import { profileData } from '../data/profileData';
-import { projectsData } from '../data/projectsData';
+import { useTranslation } from 'react-i18next';
+import { getProfileData, getProjectsData } from '../data/localizedData';
 
 export default function Footer(): React.ReactElement {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language || 'fr';
+  const profileData = getProfileData(lang);
+  const projectsData = getProjectsData(lang);
+
   return (
     <footer className="border-t-2 border-bevel-mid bg-bp-surface text-bp-muted py-12 relative z-10 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
@@ -16,7 +21,7 @@ export default function Footer(): React.ReactElement {
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.7)] dark:bg-retro-cyan flex-shrink-0 animate-pulse" />
               <span className="bevel-titlebar-text font-pixel text-xs tracking-wider">
-                Cartouche d'Ingénierie &amp; Synthèse Professionnelle
+                {t('footer.cartoucheTitle', "Cartouche d'Ingénierie & Synthèse Professionnelle")}
               </span>
             </div>
             <div className="bevel-controls">
@@ -29,28 +34,28 @@ export default function Footer(): React.ReactElement {
           {/* Grid Cells */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x divide-y sm:divide-y-0 divide-bevel-mid bg-bp-surface">
             <div className="title-block-cell">
-              <span className="title-block-label">Auteur</span>
-              <span className="title-block-value">Marceau Chapon</span>
+              <span className="title-block-label">{t('footer.author', 'Auteur')}</span>
+              <span className="title-block-value">{profileData.name}</span>
             </div>
             <div className="title-block-cell">
-              <span className="title-block-label">Formation</span>
-              <span className="title-block-value">M1 GeoData | UGE</span>
+              <span className="title-block-label">{t('footer.education', 'Formation')}</span>
+              <span className="title-block-value">{t('footer.educationVal', 'M1 GeoData | UGE')}</span>
             </div>
             <div className="title-block-cell">
-              <span className="title-block-label">Spécialité</span>
-              <span className="title-block-value">Data spatiale &amp; stats</span>
+              <span className="title-block-label">{t('footer.specialty', 'Spécialité')}</span>
+              <span className="title-block-value">{t('footer.specialtyVal', 'Data spatiale & stats')}</span>
             </div>
             <div className="title-block-cell">
-              <span className="title-block-label">Territoires</span>
-              <span className="title-block-value">IDF &amp; Occitanie</span>
+              <span className="title-block-label">{t('footer.territories', 'Territoires')}</span>
+              <span className="title-block-value">{t('footer.territoriesVal', 'IDF & Occitanie')}</span>
             </div>
             <div className="title-block-cell">
-              <span className="title-block-label">Statut</span>
-              <span className="title-block-value text-forest dark:text-emerald-400 font-semibold">Dispo. Avril 2027</span>
+              <span className="title-block-label">{t('footer.status', 'Statut')}</span>
+              <span className="title-block-value text-forest dark:text-emerald-400 font-semibold">{t('footer.statusVal', 'Dispo. Avril 2027')}</span>
             </div>
             <div className="title-block-cell">
-              <span className="title-block-label">Date Édition</span>
-              <span className="title-block-value">SEPT. 2026</span>
+              <span className="title-block-label">{t('footer.editionDate', 'Date Édition')}</span>
+              <span className="title-block-value">{t('footer.editionDateVal', 'SEPT. 2026')}</span>
             </div>
           </div>
         </div>
@@ -108,27 +113,27 @@ export default function Footer(): React.ReactElement {
           {/* Navigation */}
           <div>
             <h4 className="font-display font-bold text-xs uppercase tracking-wider text-bp-text mb-3 flex items-center gap-1.5">
-              <span className="text-retro-cyan font-pixel text-[0.625rem]">►</span> Navigation
+              <span className="text-retro-cyan font-pixel text-[0.625rem]">►</span> {t('footer.navTitle', 'Navigation')}
             </h4>
             <ul className="space-y-1.5 text-xs font-mono">
               <li>
                 <Link to="/#projets" className="hover:text-retro-cyan transition-colors">
-                  &gt; Mes projets
+                  &gt; {t('nav.projects', 'Mes projets')}
                 </Link>
               </li>
               <li>
                 <Link to="/#competences" className="hover:text-retro-cyan transition-colors">
-                  &gt; Compétences & outils
+                  &gt; {t('nav.skills', 'Compétences & outils')}
                 </Link>
               </li>
               <li>
                 <Link to="/#parcours" className="hover:text-retro-cyan transition-colors">
-                  &gt; Parcours & Diplômes
+                  &gt; {t('nav.career', 'Parcours & Diplômes')}
                 </Link>
               </li>
               <li>
                 <Link to="/#contact" className="hover:text-retro-cyan transition-colors">
-                  &gt; Me contacter
+                  &gt; {t('nav.contact', 'Me contacter')}
                 </Link>
               </li>
             </ul>
@@ -137,7 +142,7 @@ export default function Footer(): React.ReactElement {
           {/* Projets / Études de cas */}
           <div>
             <h4 className="font-display font-bold text-xs uppercase tracking-wider text-bp-text mb-3 flex items-center gap-1.5">
-              <span className="text-retro-cyan font-pixel text-[0.625rem]">►</span> Projets d'étude
+              <span className="text-retro-cyan font-pixel text-[0.625rem]">►</span> {t('footer.projectsTitle', "Projets d'étude")}
             </h4>
             <ul className="space-y-1.5 text-xs font-mono">
               {projectsData.map((project) => (
@@ -157,10 +162,10 @@ export default function Footer(): React.ReactElement {
 
         {/* ── Bottom Bar ── */}
         <div className="pt-6 border-t border-bevel-mid flex flex-col sm:flex-row items-center justify-between gap-3 text-[0.6875rem] font-mono text-bp-dim">
-          <p>© 2025-2026 {profileData.name} - Tous droits réservés</p>
+          <p>© 2025-2026 {profileData.name} - {t('footer.rights', 'Tous droits réservés')}</p>
           <div className="flex items-center gap-2">
             <span className="bevel-inset px-2 py-0.5 text-[0.5625rem] font-pixel text-bp-muted">
-              PROJET ARCHITECTURÉ EN REACT + TS + TAILWIND
+              REACT + TS + TAILWIND + i18n
             </span>
             <span className="bevel-inset px-2 py-0.5 text-[0.5625rem] font-pixel text-forest font-bold">
               OPEN SOURCE

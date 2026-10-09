@@ -9,7 +9,8 @@ import {
   Info,
   Table as TableIcon
 } from 'lucide-react';
-import { projectsData } from '../data/projectsData';
+import { useTranslation } from 'react-i18next';
+import { getProjectsData } from '../data/localizedData';
 import ReadingProgress from '../components/ReadingProgress';
 import CodeSnippet from '../components/CodeSnippet';
 import LightboxModal from '../components/LightboxModal';
@@ -113,6 +114,9 @@ const getTagBevelClass = (tag: string, index: number): string => {
 
 export default function ProjectDetailPage(): React.ReactElement {
   const { slug } = useParams<{ slug: string }>();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language || 'fr';
+  const projectsData = getProjectsData(lang);
   const [activeSection, setActiveSection] = useState('problematique');
   const [lightboxData, setLightboxData] = useState<LightboxState>({ isOpen: false, src: '', title: '', caption: '' });
 
@@ -238,39 +242,39 @@ export default function ProjectDetailPage(): React.ReactElement {
             ))}
           </div>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            {project.links?.pdf && (
-              <a
-                href={project.links.pdf}
-                download
-                className="bevel-btn-primary text-xs px-4 py-2 flex items-center gap-2"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>TÉLÉCHARGER LE RAPPORT (PDF)</span>
-              </a>
-            )}
+            {/* Action CTAs */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              {project.links?.pdf && (
+                <a
+                  href={project.links.pdf}
+                  download
+                  className="bevel-btn-primary text-xs px-4 py-2 flex items-center gap-2"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>{t('projectDetail.downloadPdf', 'TÉLÉCHARGER LE RAPPORT (PDF)')}</span>
+                </a>
+              )}
 
-            {project.links?.github && (
-              <a
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bevel-btn text-xs px-4 py-2 flex items-center gap-2 hover:text-cobalt hover:border-cobalt/40"
-              >
-                <Github className="w-3.5 h-3.5" />
-                <span>CODE &amp; DONNÉES SUR GITHUB</span>
-              </a>
-            )}
+              {project.links?.github && (
+                <a
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bevel-btn text-xs px-4 py-2 flex items-center gap-2 hover:text-cobalt hover:border-cobalt/40"
+                >
+                  <Github className="w-3.5 h-3.5" />
+                  <span>{t('projectDetail.viewGithub', 'CODE & DONNÉES SUR GITHUB')}</span>
+                </a>
+              )}
 
-            <Link
-              to="/#projets"
-              className="bevel-btn text-xs px-4 py-2 flex items-center gap-2 text-slate-700 dark:text-bp-muted hover:text-slate-950 dark:hover:text-white"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>RETOUR AUX PROJETS</span>
-            </Link>
-          </div>
+              <Link
+                to="/#projets"
+                className="bevel-btn text-xs px-4 py-2 flex items-center gap-2 text-slate-700 dark:text-bp-muted hover:text-slate-950 dark:hover:text-white"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>{t('projectDetail.back', 'RETOUR AUX PROJETS')}</span>
+              </Link>
+            </div>
         </div>
       </header>
 
@@ -281,11 +285,11 @@ export default function ProjectDetailPage(): React.ReactElement {
             <div className="flex items-center gap-2 truncate">
               <span className={`w-2.5 h-2.5 rounded-full ${theme.dot} flex-shrink-0 animate-pulse`} />
               <span className="font-pixel text-[0.6875rem] font-bold tracking-wider uppercase text-slate-950 dark:text-white truncate">
-                LIVRABLE CARTOGRAPHIQUE MAJEUR &amp; INDICATEURS CLÉS
+                {t('projectDetail.deliverableTitle', 'LIVRABLE CARTOGRAPHIQUE MAJEUR & INDICATEURS CLÉS')}
               </span>
             </div>
             <span className="text-[0.625rem] font-pixel text-slate-600 dark:text-bp-dim hidden sm:inline">
-              [ APERÇU HAUTE DÉFINITION ]
+              {t('projectDetail.previewHd', '[ APERÇU HAUTE DÉFINITION ]')}
             </span>
           </div>
 
@@ -309,7 +313,7 @@ export default function ProjectDetailPage(): React.ReactElement {
                 />
                 <div className="absolute inset-0 bg-bp-canvas/75 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-bp-text font-pixel text-xs">
                   <ZoomIn className="w-4 h-4 text-retro-cyan" />
-                  <span>[ CLIQUER POUR AGRANDIR PLEINE RÉSOLUTION ]</span>
+                  <span>{t('projectDetail.clickToZoom', '[ CLIQUER POUR AGRANDIR PLEINE RÉSOLUTION ]')}</span>
                 </div>
               </div>
             </div>
@@ -317,14 +321,14 @@ export default function ProjectDetailPage(): React.ReactElement {
             {/* Key KPI Chips Column */}
             <div className="lg:col-span-4 flex flex-col justify-center gap-3">
               <div className="dimension-line mb-1">
-                SYNTHÈSE MÉTRIQUE DU DOSSIER
+                {t('projectDetail.metricSummary', 'SYNTHÈSE MÉTRIQUE DU DOSSIER')}
               </div>
               {project.summaryFooter.split('|').map((metric, idx) => {
                 const trimmed = metric.trim();
                 return (
                   <div key={idx} className="bevel-inset p-3.5 border-l-4 border-l-retro-cyan">
                     <span className="font-pixel text-[0.5625rem] text-slate-700 dark:text-bp-dim uppercase block mb-1">
-                      Métrique 0{idx + 1}
+                      {t('projectDetail.metricPrefix', 'Métrique')} 0{idx + 1}
                     </span>
                     <span className="font-mono text-sm sm:text-base font-bold text-slate-950 dark:text-white">
                       {trimmed}
@@ -333,7 +337,7 @@ export default function ProjectDetailPage(): React.ReactElement {
                 );
               })}
               <p className="text-[0.75rem] font-mono text-bp-muted leading-relaxed pt-1">
-                Visualisation cartographique et modélisation détaillée documentées au fil des 4 phases méthodologiques ci-dessous.
+                {t('projectDetail.methodologyIntro', 'Visualisation cartographique et modélisation détaillée documentées au fil des 4 phases méthodologiques ci-dessous.')}
               </p>
             </div>
           </div>
@@ -561,15 +565,15 @@ export default function ProjectDetailPage(): React.ReactElement {
             {/* Back to projects navigation banner */}
             <div className="bevel-window p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <h4 className="font-display font-bold text-base text-bp-text mb-1">Explorer d'autres projets</h4>
-                <p className="text-xs sm:text-[0.8125rem] text-bp-muted font-mono">Découvrez mes autres travaux en modélisation spatiale, télédétection et SIG.</p>
+                <h4 className="font-display font-bold text-base text-bp-text mb-1">{t('projectDetail.exploreOther', "Explorer d'autres projets")}</h4>
+                <p className="text-xs sm:text-[0.8125rem] text-bp-muted font-mono">{t('projectDetail.exploreOtherDesc', "Découvrez mes autres travaux en modélisation spatiale, télédétection et SIG.")}</p>
               </div>
               <Link
                 to="/#projets"
                 className="bevel-btn-primary px-4 py-2 text-xs flex items-center gap-2 flex-shrink-0"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
-                <span>TOUS LES PROJETS</span>
+                <span>{t('projectDetail.allProjects', 'TOUS LES PROJETS')}</span>
               </Link>
             </div>
 
@@ -585,7 +589,7 @@ export default function ProjectDetailPage(): React.ReactElement {
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.7)] dark:bg-blue-400 flex-shrink-0 animate-pulse" />
                     <span className="font-display font-bold text-xs text-blue-700 dark:text-blue-300 tracking-tight">
-                      SOMMAIRE DU PROJET
+                      {t('projectDetail.tableOfContents', 'SOMMAIRE DU PROJET')}
                     </span>
                   </div>
                   <div className="bevel-controls">
@@ -617,7 +621,7 @@ export default function ProjectDetailPage(): React.ReactElement {
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shadow-[0_0_8px_rgba(16,185,129,0.7)] dark:bg-emerald-400 flex-shrink-0 animate-pulse" />
                     <span className="font-display font-bold text-xs text-emerald-800 dark:text-emerald-300 tracking-tight">
-                      STACK TECHNIQUE DÉPLOYÉE
+                      {t('projectDetail.techStack', 'STACK TECHNIQUE DÉPLOYÉE')}
                     </span>
                   </div>
                   <div className="bevel-controls">
