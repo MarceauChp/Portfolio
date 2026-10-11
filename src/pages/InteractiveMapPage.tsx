@@ -37,7 +37,8 @@ import { GIS_LAYERS_CONFIG, VEFA_CATEGORIES, type GisLayerConfig } from '../data
 
 type BaseLayerId = 'carto' | 'osm' | 'satellite';
 
-const CARTO_API_KEY = (import.meta.env.VITE_CARTO_API_KEY as string | undefined)?.trim() || '';
+const DEFAULT_CARTO_KEY = 'cb1_41he_1_a69a68e2b9574842fabf16d3';
+const CARTO_API_KEY = (import.meta.env.VITE_CARTO_API_KEY as string | undefined)?.trim() || DEFAULT_CARTO_KEY;
 
 const BASE_LAYERS: Record<BaseLayerId, {
   name: string;
