@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { 
-  Compass, 
-  MapPin, 
-  RotateCcw, 
-  Maximize2, 
-  Minimize2, 
+import {
+  Compass,
+  MapPin,
+  RotateCcw,
+  Maximize2,
+  Minimize2,
   ArrowRight,
   Layers,
   ChevronLeft,
@@ -25,10 +25,10 @@ import {
   SlidersHorizontal,
   Loader2
 } from 'lucide-react';
-import { 
-  FRANCE_CENTER, 
-  FRANCE_ZOOM, 
-  type MapProject 
+import {
+  FRANCE_CENTER,
+  FRANCE_ZOOM,
+  type MapProject
 } from '../data/mapProjectsData';
 import { useTranslation } from 'react-i18next';
 import { getMapProjectsData, getClippyWelcome } from '../data/localizedData';
@@ -204,90 +204,90 @@ export default function InteractiveMapPage(): React.ReactElement {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
-// Helper to create cartographic callout pin markers:
-// A pinpoint beacon at (0,0) with a sleek callout banner and pointer arrow above it
-// carto & osm -> NOIR (text-slate-950 font-black)
-// satellite -> BLANC (text-white font-bold)
-const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
-  const isSatellite = layer === 'satellite';
-  const fontColor = isSatellite ? 'text-white font-bold' : 'text-slate-950 font-black';
-  const textShadow = isSatellite
-    ? 'drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]'
-    : 'drop-shadow-[0_0_1px_rgba(255,255,255,0.9)]';
+  // Helper to create cartographic callout pin markers:
+  // A pinpoint beacon at (0,0) with a sleek callout banner and pointer arrow above it
+  // carto & osm -> NOIR (text-slate-950 font-black)
+  // satellite -> BLANC (text-white font-bold)
+  const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
+    const isSatellite = layer === 'satellite';
+    const fontColor = isSatellite ? 'text-white font-bold' : 'text-slate-950 font-black';
+    const textShadow = isSatellite
+      ? 'drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]'
+      : 'drop-shadow-[0_0_1px_rgba(255,255,255,0.9)]';
 
-  const styleConfig = {
-    emerald: {
-      lightBg: 'bg-emerald-50 border-emerald-600 text-slate-950',
-      lightPointer: 'border-t-emerald-600',
-      lightTarget: 'bg-emerald-600 border-white',
-      darkBg: 'bg-slate-950/95 border-emerald-400 text-white',
-      darkPointer: 'border-t-emerald-400',
-      darkTarget: 'bg-emerald-400 border-slate-950',
-    },
-    violet: {
-      lightBg: 'bg-purple-50 border-purple-600 text-slate-950',
-      lightPointer: 'border-t-purple-600',
-      lightTarget: 'bg-purple-600 border-white',
-      darkBg: 'bg-slate-950/95 border-purple-400 text-white',
-      darkPointer: 'border-t-purple-400',
-      darkTarget: 'bg-purple-400 border-slate-950',
-    },
-    amber: {
-      lightBg: 'bg-amber-50 border-amber-600 text-slate-950',
-      lightPointer: 'border-t-amber-600',
-      lightTarget: 'bg-amber-600 border-white',
-      darkBg: 'bg-slate-950/95 border-amber-400 text-white',
-      darkPointer: 'border-t-amber-400',
-      darkTarget: 'bg-amber-400 border-slate-950',
-    },
-    rose: {
-      lightBg: 'bg-rose-50 border-rose-600 text-slate-950',
-      lightPointer: 'border-t-rose-600',
-      lightTarget: 'bg-rose-600 border-white',
-      darkBg: 'bg-slate-950/95 border-rose-400 text-white',
-      darkPointer: 'border-t-rose-400',
-      darkTarget: 'bg-rose-400 border-slate-950',
-    },
-    blue: {
-      lightBg: 'bg-sky-50 border-sky-600 text-slate-950',
-      lightPointer: 'border-t-sky-600',
-      lightTarget: 'bg-sky-600 border-white',
-      darkBg: 'bg-slate-950/95 border-sky-400 text-white',
-      darkPointer: 'border-t-sky-400',
-      darkTarget: 'bg-sky-400 border-slate-950',
-    },
-    cyan: {
-      lightBg: 'bg-cyan-50 border-cyan-600 text-slate-950',
-      lightPointer: 'border-t-cyan-600',
-      lightTarget: 'bg-cyan-600 border-white',
-      darkBg: 'bg-slate-950/95 border-retro-cyan text-white',
-      darkPointer: 'border-t-retro-cyan',
-      darkTarget: 'bg-retro-cyan border-slate-950',
-    },
-  }[proj.accent || 'cyan'];
+    const styleConfig = {
+      emerald: {
+        lightBg: 'bg-emerald-50 border-emerald-600 text-slate-950',
+        lightPointer: 'border-t-emerald-600',
+        lightTarget: 'bg-emerald-600 border-white',
+        darkBg: 'bg-slate-950/95 border-emerald-400 text-white',
+        darkPointer: 'border-t-emerald-400',
+        darkTarget: 'bg-emerald-400 border-slate-950',
+      },
+      violet: {
+        lightBg: 'bg-purple-50 border-purple-600 text-slate-950',
+        lightPointer: 'border-t-purple-600',
+        lightTarget: 'bg-purple-600 border-white',
+        darkBg: 'bg-slate-950/95 border-purple-400 text-white',
+        darkPointer: 'border-t-purple-400',
+        darkTarget: 'bg-purple-400 border-slate-950',
+      },
+      amber: {
+        lightBg: 'bg-amber-50 border-amber-600 text-slate-950',
+        lightPointer: 'border-t-amber-600',
+        lightTarget: 'bg-amber-600 border-white',
+        darkBg: 'bg-slate-950/95 border-amber-400 text-white',
+        darkPointer: 'border-t-amber-400',
+        darkTarget: 'bg-amber-400 border-slate-950',
+      },
+      rose: {
+        lightBg: 'bg-rose-50 border-rose-600 text-slate-950',
+        lightPointer: 'border-t-rose-600',
+        lightTarget: 'bg-rose-600 border-white',
+        darkBg: 'bg-slate-950/95 border-rose-400 text-white',
+        darkPointer: 'border-t-rose-400',
+        darkTarget: 'bg-rose-400 border-slate-950',
+      },
+      blue: {
+        lightBg: 'bg-sky-50 border-sky-600 text-slate-950',
+        lightPointer: 'border-t-sky-600',
+        lightTarget: 'bg-sky-600 border-white',
+        darkBg: 'bg-slate-950/95 border-sky-400 text-white',
+        darkPointer: 'border-t-sky-400',
+        darkTarget: 'bg-sky-400 border-slate-950',
+      },
+      cyan: {
+        lightBg: 'bg-cyan-50 border-cyan-600 text-slate-950',
+        lightPointer: 'border-t-cyan-600',
+        lightTarget: 'bg-cyan-600 border-white',
+        darkBg: 'bg-slate-950/95 border-retro-cyan text-white',
+        darkPointer: 'border-t-retro-cyan',
+        darkTarget: 'bg-retro-cyan border-slate-950',
+      },
+    }[proj.accent || 'cyan'];
 
-  const badgeBg = isSatellite ? styleConfig.darkBg : styleConfig.lightBg;
-  const pointerColor = isSatellite ? styleConfig.darkPointer : styleConfig.lightPointer;
-  const targetColor = isSatellite ? styleConfig.darkTarget : styleConfig.lightTarget;
+    const badgeBg = isSatellite ? styleConfig.darkBg : styleConfig.lightBg;
+    const pointerColor = isSatellite ? styleConfig.darkPointer : styleConfig.lightPointer;
+    const targetColor = isSatellite ? styleConfig.darkTarget : styleConfig.lightTarget;
 
-  // Horizontal alignment for callout banner:
-  // Grand Avignon (left): banner extends to the left, arrow at the right side
-  // IPA (right): banner extends to the right, arrow at the left side
-  // Default: banner centered above pointer
-  let horizontalAlign = '-translate-x-1/2';
-  let arrowAlign = 'self-center';
+    // Horizontal alignment for callout banner:
+    // Grand Avignon (left): banner extends to the left, arrow at the right side
+    // IPA (right): banner extends to the right, arrow at the left side
+    // Default: banner centered above pointer
+    let horizontalAlign = '-translate-x-1/2';
+    let arrowAlign = 'self-center';
 
-  if (proj.badgeOffset === 'left') {
-    horizontalAlign = '-translate-x-[85%]';
-    arrowAlign = 'self-end mr-3';
-  } else if (proj.badgeOffset === 'right') {
-    horizontalAlign = '-translate-x-[15%]';
-    arrowAlign = 'self-start ml-3';
-  }
+    if (proj.badgeOffset === 'left') {
+      horizontalAlign = '-translate-x-[85%]';
+      arrowAlign = 'self-end mr-3';
+    } else if (proj.badgeOffset === 'right') {
+      horizontalAlign = '-translate-x-[15%]';
+      arrowAlign = 'self-start ml-3';
+    }
 
-  return L.divIcon({
-    className: 'custom-cad-callout-marker',
-    html: `
+    return L.divIcon({
+      className: 'custom-cad-callout-marker',
+      html: `
       <div class="relative cursor-pointer group select-none pointer-events-auto">
         <!-- Floating Callout Banner positioned above the coordinate -->
         <div class="absolute bottom-2 left-0 ${horizontalAlign} flex flex-col group-hover:scale-105 active:scale-95 transition-transform">
@@ -306,10 +306,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
         <div class="absolute -top-1 -left-1 w-2.5 h-2.5 rounded-full border-2 ${targetColor} shadow-md group-hover:scale-125 transition-transform"></div>
       </div>
     `,
-    iconSize: [0, 0],
-    iconAnchor: [0, 0],
-  });
-};
+      iconSize: [0, 0],
+      iconAnchor: [0, 0],
+    });
+  };
 
   // Switch base layer dynamically and harmonize marker font colors
   useEffect(() => {
@@ -540,14 +540,14 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
         },
         pointToLayer: config.pointToLayer
           ? (feature, latlng) => {
-              const marker = config.pointToLayer!(feature, latlng, layerOpacityRef.current);
-              const catKey = config.getFeatureCategoryKey(feature);
-              const isHidden = Boolean(hiddenLegendItemsRef.current[layerId]?.[catKey]);
-              if (isHidden && (marker as any).setStyle) {
-                (marker as any).setStyle({ radius: 0, fillOpacity: 0, opacity: 0 });
-              }
-              return marker;
+            const marker = config.pointToLayer!(feature, latlng, layerOpacityRef.current);
+            const catKey = config.getFeatureCategoryKey(feature);
+            const isHidden = Boolean(hiddenLegendItemsRef.current[layerId]?.[catKey]);
+            if (isHidden && (marker as any).setStyle) {
+              (marker as any).setStyle({ radius: 0, fillOpacity: 0, opacity: 0 });
             }
+            return marker;
+          }
           : undefined,
         onEachFeature: (feature, layer) => {
           const popupHtml = config.getPopupContent(feature);
@@ -677,11 +677,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
         {/* ── Main Map Workstation Shell ── */}
         <div
           ref={mapWrapperRef}
-          className={`bevel-window p-2 sm:p-3 relative overflow-hidden flex flex-col ${
-            isFullscreen
+          className={`bevel-window p-2 sm:p-3 relative overflow-hidden flex flex-col ${isFullscreen
               ? 'fixed inset-0 z-50 rounded-none border-0 h-screen w-screen'
               : 'h-[calc(100vh-8.5rem)] min-h-[640px] shadow-2xl'
-          }`}
+            }`}
         >
           {/* ── Window Titlebar ── */}
           <div className="bevel-titlebar -mx-2 -mt-2 sm:-mx-3 sm:-mt-3 mb-2 flex items-center justify-between z-20">
@@ -704,9 +703,8 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                   <Layers className="w-4 h-4 text-retro-cyan flex-shrink-0" />
                   <span className="font-bold">{t('map.basemap', 'FOND')} : {BASE_LAYERS[baseLayer].shortName}</span>
                   <ChevronDown
-                    className={`w-3.5 h-3.5 text-retro-cyan transition-transform duration-200 flex-shrink-0 ${
-                      isBasemapDropdownOpen ? 'rotate-180' : ''
-                    }`}
+                    className={`w-3.5 h-3.5 text-retro-cyan transition-transform duration-200 flex-shrink-0 ${isBasemapDropdownOpen ? 'rotate-180' : ''
+                      }`}
                   />
                 </button>
 
@@ -727,11 +725,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                             setBaseLayer(key);
                             setIsBasemapDropdownOpen(false);
                           }}
-                          className={`w-full text-left p-1.5 rounded bevel-inset flex items-center justify-between text-xs font-mono transition-all cursor-pointer ${
-                            isSelected
+                          className={`w-full text-left p-1.5 rounded bevel-inset flex items-center justify-between text-xs font-mono transition-all cursor-pointer ${isSelected
                               ? 'bg-retro-cyan/20 border-l-4 border-l-retro-cyan font-bold text-slate-950 dark:text-white'
                               : 'hover:bg-white/10 text-bp-text'
-                          }`}
+                            }`}
                         >
                           <div className="flex flex-col">
                             <span className="font-pixel text-[0.6875rem]">{layer.shortName}</span>
@@ -751,19 +748,17 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                 return (
                   <button
                     onClick={() => setIsLayersPanelOpen(!isLayersPanelOpen)}
-                    className={`bevel-btn text-xs sm:text-[0.8125rem] font-pixel flex items-center gap-2 px-3 sm:px-3.5 py-1.5 transition-all hover:scale-105 ${
-                      activeCount > 0
+                    className={`bevel-btn text-xs sm:text-[0.8125rem] font-pixel flex items-center gap-2 px-3 sm:px-3.5 py-1.5 transition-all hover:scale-105 ${activeCount > 0
                         ? 'bg-retro-cyan/20 border-retro-cyan text-slate-950 dark:text-retro-cyan font-bold shadow-sm'
                         : 'text-bp-text hover:text-retro-cyan'
-                    }`}
+                      }`}
                     title={t('map.gisManagerTitle', 'Ouvrir le gestionnaire des couches vectorielles SIG')}
                   >
                     <Layers className="w-4 h-4 text-retro-cyan" />
                     <span className="hidden sm:inline">{t('map.gisLayersBtn', 'COUCHES SIG')}</span>
                     <span className="sm:hidden">SIG</span>
-                    <span className={`px-1.5 py-0.5 rounded text-[0.5625rem] font-mono ${
-                      activeCount > 0 ? 'bg-retro-cyan text-slate-950 font-black' : 'bg-black/30 text-bp-muted'
-                    }`}>
+                    <span className={`px-1.5 py-0.5 rounded text-[0.5625rem] font-mono ${activeCount > 0 ? 'bg-retro-cyan text-slate-950 font-black' : 'bg-black/30 text-bp-muted'
+                      }`}>
                       {activeCount}/3
                     </span>
                   </button>
@@ -779,11 +774,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                   }
                   setIsLegendOpen(!isLegendOpen);
                 }}
-                className={`bevel-btn text-xs sm:text-[0.8125rem] font-pixel flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 transition-all hover:scale-105 ${
-                  isLegendOpen
+                className={`bevel-btn text-xs sm:text-[0.8125rem] font-pixel flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 transition-all hover:scale-105 ${isLegendOpen
                     ? 'bg-purple-500/20 border-purple-400 text-purple-900 dark:text-purple-300 font-bold'
                     : 'text-bp-text hover:text-retro-cyan'
-                }`}
+                  }`}
                 title={t('map.legend', 'Afficher ou masquer la légende thématique')}
               >
                 <SlidersHorizontal className="w-4 h-4 text-purple-400" />
@@ -793,11 +787,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
               {/* CARTO Key Helper Button (Larger) */}
               <button
                 onClick={() => setIsKeyModalOpen(true)}
-                className={`bevel-btn text-xs sm:text-[0.8125rem] font-pixel flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 hover:scale-105 ${
-                  CARTO_API_KEY
+                className={`bevel-btn text-xs sm:text-[0.8125rem] font-pixel flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 hover:scale-105 ${CARTO_API_KEY
                     ? 'text-emerald-700 dark:text-emerald-400 border-emerald-500/50 bg-emerald-500/10'
                     : 'text-amber-800 dark:text-amber-300 border-amber-500/60 bg-amber-400/15'
-                }`}
+                  }`}
                 title="Configuration de la clé API CARTO"
               >
                 <Key className="w-3.5 h-3.5" />
@@ -841,9 +834,8 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
               {/* Reset to France button (Larger) */}
               <button
                 onClick={handleResetView}
-                className={`bevel-btn text-xs sm:text-[0.8125rem] flex items-center gap-2 px-3.5 sm:px-4 py-2 whitespace-nowrap transition-all ${
-                  !activeProject ? 'bevel-btn-primary font-bold' : 'text-bp-text hover:text-retro-cyan'
-                }`}
+                className={`bevel-btn text-xs sm:text-[0.8125rem] flex items-center gap-2 px-3.5 sm:px-4 py-2 whitespace-nowrap transition-all ${!activeProject ? 'bevel-btn-primary font-bold' : 'text-bp-text hover:text-retro-cyan'
+                  }`}
                 title={t('map.resetZoom', "Vue d'ensemble de la France (ferme les couches actives)")}
               >
                 <RotateCcw className="w-4 h-4" />
@@ -855,11 +847,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
               {/* Projects Dropdown Trigger Button (Larger) */}
               <button
                 onClick={() => setIsProjectsDropdownOpen(!isProjectsDropdownOpen)}
-                className={`bevel-btn text-xs sm:text-[0.8125rem] flex items-center gap-2.5 px-4 py-2 whitespace-nowrap transition-all ${
-                  activeProject
+                className={`bevel-btn text-xs sm:text-[0.8125rem] flex items-center gap-2.5 px-4 py-2 whitespace-nowrap transition-all ${activeProject
                     ? 'bevel-btn-primary font-bold shadow-sm'
                     : 'text-bp-text hover:text-retro-cyan'
-                }`}
+                  }`}
                 title={t('map.projectsList', "Ouvrir le menu des projets")}
                 aria-expanded={isProjectsDropdownOpen}
               >
@@ -868,9 +859,8 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                   {activeProject ? activeProject.shortTitle : t('map.selectProjectPrompt', 'SÉLECTIONNER UN PROJET...')}
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 text-retro-cyan transition-transform duration-200 flex-shrink-0 ${
-                    isProjectsDropdownOpen ? 'rotate-180' : ''
-                  }`}
+                  className={`w-4 h-4 text-retro-cyan transition-transform duration-200 flex-shrink-0 ${isProjectsDropdownOpen ? 'rotate-180' : ''
+                    }`}
                 />
               </button>
 
@@ -889,23 +879,22 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                   <div className="max-h-[60vh] overflow-y-auto space-y-1 pr-1 scrollbar-thin">
                     {mapProjects.map((p) => {
                       const isSelected = activeProject?.id === p.id;
-                      const accentColor = 
+                      const accentColor =
                         p.accent === 'emerald' ? 'bg-emerald-500' :
-                        p.accent === 'violet' ? 'bg-purple-500' :
-                        p.accent === 'amber' ? 'bg-amber-500' :
-                        p.accent === 'rose' ? 'bg-rose-500' :
-                        p.accent === 'blue' ? 'bg-sky-500' :
-                        'bg-retro-cyan';
+                          p.accent === 'violet' ? 'bg-purple-500' :
+                            p.accent === 'amber' ? 'bg-amber-500' :
+                              p.accent === 'rose' ? 'bg-rose-500' :
+                                p.accent === 'blue' ? 'bg-sky-500' :
+                                  'bg-retro-cyan';
 
                       return (
                         <button
                           key={p.id}
                           onClick={() => handleSelectProject(p)}
-                          className={`w-full text-left p-2 rounded bevel-inset flex items-start gap-2.5 transition-all cursor-pointer ${
-                            isSelected
+                          className={`w-full text-left p-2 rounded bevel-inset flex items-start gap-2.5 transition-all cursor-pointer ${isSelected
                               ? 'bg-retro-cyan/20 border-l-4 border-l-retro-cyan font-bold'
                               : 'hover:bg-white/5 border-l-2 border-l-transparent hover:border-l-retro-cyan'
-                          }`}
+                            }`}
                         >
                           <span className={`w-2 h-2 rounded-full ${accentColor} flex-shrink-0 mt-1 shadow-sm`} />
                           <div className="flex-1 min-w-0">
@@ -999,11 +988,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                           <button
                             onClick={() => toggleGisLayer(matchingLayer.id)}
                             disabled={isLoading}
-                            className={`w-full py-1.5 px-2 rounded text-[0.625rem] font-pixel flex items-center justify-between border transition-all ${
-                              isLoaded
+                            className={`w-full py-1.5 px-2 rounded text-[0.625rem] font-pixel flex items-center justify-between border transition-all ${isLoaded
                                 ? 'bg-retro-cyan/15 border-retro-cyan text-slate-900 dark:text-retro-cyan font-bold shadow-sm'
                                 : 'bevel-btn text-bp-muted hover:text-retro-cyan'
-                            }`}
+                              }`}
                           >
                             <span className="flex items-center gap-1.5">
                               {isLoading ? (
@@ -1053,9 +1041,8 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
           {/* ── Leaflet Map Canvas (Full Height) ── */}
           <div
             ref={mapContainerRef}
-            className={`w-full flex-grow rounded bevel-inset relative z-10 bg-bp-canvas ${
-              baseLayer === 'satellite' ? 'leaflet-theme-satellite' : 'leaflet-theme-light'
-            }`}
+            className={`w-full flex-grow rounded bevel-inset relative z-10 bg-bp-canvas ${baseLayer === 'satellite' ? 'leaflet-theme-satellite' : 'leaflet-theme-light'
+              }`}
           />
 
           {/* Scoped CSS for Leaflet controls and GeoJSON popups */}
@@ -1155,11 +1142,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                         <button
                           key={l.id}
                           onClick={() => setActiveLegendLayerId(l.id)}
-                          className={`px-1.5 py-0.5 rounded text-[0.5rem] font-pixel whitespace-nowrap transition-all ${
-                            activeLegendLayerId === l.id
+                          className={`px-1.5 py-0.5 rounded text-[0.5rem] font-pixel whitespace-nowrap transition-all ${activeLegendLayerId === l.id
                               ? 'bg-purple-600 text-white font-bold'
                               : 'bevel-btn text-bp-muted hover:text-white'
-                          }`}
+                            }`}
                         >
                           {l.shortName}
                         </button>
@@ -1202,19 +1188,17 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                         key={item.id}
                         type="button"
                         onClick={() => toggleLegendItem(activeLegendLayerId, item.id)}
-                        className={`w-full flex items-center gap-2 p-1 rounded text-left transition-all ${
-                          isHidden
+                        className={`w-full flex items-center gap-2 p-1 rounded text-left transition-all ${isHidden
                             ? 'opacity-40 bg-black/10 text-bp-dim hover:opacity-60'
                             : 'hover:bg-white/5 text-slate-900 dark:text-white'
-                        }`}
+                          }`}
                         title={isHidden ? t('map.clickToShowClass', 'Cliquer pour afficher cette classe') : t('map.clickToHideClass', 'Cliquer pour masquer cette classe')}
                       >
                         <div
-                          className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center flex-shrink-0 border transition-all ${
-                            isHidden
+                          className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center flex-shrink-0 border transition-all ${isHidden
                               ? 'border-dashed border-bp-dim/80 bg-transparent'
                               : 'border-black/50 shadow-xs'
-                          }`}
+                            }`}
                           style={{ backgroundColor: isHidden ? 'transparent' : item.color }}
                         >
                           {!isHidden && (
@@ -1231,11 +1215,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                             </div>
                           )}
                         </div>
-                        <span className={`font-pixel text-[0.5rem] px-1 py-0.2 rounded border flex-shrink-0 ${
-                          isHidden
+                        <span className={`font-pixel text-[0.5rem] px-1 py-0.2 rounded border flex-shrink-0 ${isHidden
                             ? 'bg-transparent text-bp-dim border-bevel-mid/50'
                             : 'bg-bp-canvas text-retro-cyan border-retro-cyan/40 font-bold'
-                        }`}>
+                          }`}>
                           {isHidden ? 'OFF' : 'ON'}
                         </span>
                       </button>
@@ -1285,11 +1268,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                     return (
                       <div
                         key={l.id}
-                        className={`p-2.5 rounded bevel-inset border-l-4 transition-all ${
-                          isActive
+                        className={`p-2.5 rounded bevel-inset border-l-4 transition-all ${isActive
                             ? 'border-l-retro-cyan bg-retro-cyan/10'
                             : 'border-l-bevel-mid bg-black/10'
-                        }`}
+                          }`}
                       >
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                           <div className="flex-1 min-w-0">
@@ -1299,11 +1281,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                                 disabled={isLoading}
                                 className="flex items-center gap-2 text-left cursor-pointer group"
                               >
-                                <span className={`w-3 h-3 rounded-full flex-shrink-0 border transition-all ${
-                                  isActive
+                                <span className={`w-3 h-3 rounded-full flex-shrink-0 border transition-all ${isActive
                                     ? 'bg-retro-cyan border-retro-cyan shadow-[0_0_6px_rgba(2,132,199,0.8)]'
                                     : 'bg-transparent border-bevel-mid group-hover:border-retro-cyan'
-                                }`} />
+                                  }`} />
                                 <span className="font-pixel text-[0.6875rem] font-bold text-slate-900 dark:text-white uppercase">
                                   {l.name}
                                 </span>
@@ -1354,11 +1335,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                                 )}
                                 <button
                                   onClick={() => toggleGisLayer(l.id)}
-                                  className={`bevel-btn px-2 py-1 text-[0.5625rem] font-pixel ${
-                                    isActive
+                                  className={`bevel-btn px-2 py-1 text-[0.5625rem] font-pixel ${isActive
                                       ? 'bevel-btn-primary font-bold'
                                       : 'text-bp-muted hover:text-white'
-                                  }`}
+                                    }`}
                                 >
                                   {isActive ? t('map.deactivate', 'DÉSACTIVER') : t('map.activate', 'ACTIVER')}
                                 </button>
@@ -1379,11 +1359,10 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                         <button
                           key={op}
                           onClick={() => setLayerOpacity(op)}
-                          className={`px-2 py-0.5 rounded text-[0.5625rem] font-pixel ${
-                            layerOpacity === op
+                          className={`px-2 py-0.5 rounded text-[0.5625rem] font-pixel ${layerOpacity === op
                               ? 'bg-retro-cyan text-slate-950 font-bold'
                               : 'bevel-btn text-bp-text hover:text-retro-cyan'
-                          }`}
+                            }`}
                         >
                           {Math.round(op * 100)}%
                         </button>
@@ -1486,7 +1465,7 @@ const createMarkerIcon = (proj: MapProject, layer: BaseLayerId): L.DivIcon => {
                     <li>
                       Ajoutez votre clé :
                       <pre className="mt-1 p-2 bg-black/60 rounded text-retro-cyan border border-bevel-mid select-all overflow-x-auto text-[0.6875rem]">
-VITE_CARTO_API_KEY=votre_cle_ici
+                        VITE_CARTO_API_KEY=votre_cle_ici
                       </pre>
                     </li>
                     <li>
