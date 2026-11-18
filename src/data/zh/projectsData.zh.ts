@@ -114,16 +114,15 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_ipa.png",
     subtitle: "在公共设施容量数据匮乏的情境下，开发了一套替代传统 2SFCA 模型的轻量化指标——空间可达性压力指数（IPA）。该模型有效刻画了出行距离阻力与目的地需求过载相互叠加的“空间双重惩罚”。",
     excerpt: "空间可达性压力指数（IPA）是评估公共服务空间配置不平等的稳健工具。它有效整合了真实路网拓扑摩擦（QNEAT3）、人口集水区竞争压力以及设施可替代性。以阿维尼翁 18-24 岁青年就学交通为案例进行了实证检验。",
-    tags: ["R", "QNEAT3", "QGIS", "Road Network"],
+    tags: ["Python", "R", "QGIS", "QNEAT3", "Road Network"],
     summaryFooter: "阿维尼翁 | 18-24岁青年群体 | 大学设施空间可达性",
     meta: [
       { label: "研究进展", value: "正准备投递同行评议期刊" },
       { label: "学科领域", value: "公共服务地理学与交通规划" },
       { label: "实证区域", value: "大阿维尼翁都市区" },
-      { label: "核心算法", value: "QNEAT3 路网拓扑分析 + R语言" }
+      { label: "核心算法", value: "Python + QNEAT3 路网拓扑分析 + R语言" }
     ],
     links: {
-      pdf: "/assets/pdf/Indice de Pression d'Accès (IPA), Marceau Chapon.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
@@ -182,13 +181,13 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_chaleur.png",
     subtitle: "担任技术与 GIS 负责人，主导了覆盖 16 个市镇、长达 164 页的气候诊断课题。项目融合了 Landsat 8 地表温度（LST）反演、50米分辨率局地气候区（LCZ）分类、多变量脆弱性聚类建模，以及 120 个微气候传感器的布网规划。",
     excerpt: "根据法国国家气候适应计划（PNACC-3），大阿维尼翁委托开展全域热环境诊断。通过结合 Landsat 8 多时相卫星热红外遥感与 LCZ 气候分类，查明商业仓储物流区聚集了累积热岛面积的 72.1%。最终绘制了 130 处清凉庇护绿道，并完成了 120 个 IoT 微气候监测节点的布局方案。",
-    tags: ["Landsat 8", "LCZ", "QGIS Model Builder", "PostGIS", "PCA/HCA", "IoT Network"],
+    tags: ["PostgreSQL / PostGIS", "Landsat 8", "LCZ", "QGIS Model Builder", "PCA/HCA", "IoT Network"],
     summaryFooter: "16个市镇 | 164页研究报告 | 120个IoT微气候传感器 | 50米LCZ",
     meta: [
       { label: "课题性质", value: "政府委托课题 (164页) | 2024-2025" },
       { label: "委托方", value: "大阿维尼翁都市区城市社区" },
       { label: "区域范围", value: "16个市镇 (沃克吕兹省与加尔省)" },
-      { label: "核心方法", value: "Landsat / LCZ / PCA-HCA / PostGIS", isMono: true }
+      { label: "核心方法", value: "PostgreSQL / PostGIS / Landsat / LCZ", isMono: true }
     ],
     links: {
       pdf: "/assets/pdf/La surchauffe urbaine dans le Grand Avignon, entre îlots de fraîcheur et prévention.pdf",
@@ -249,18 +248,18 @@ icc(mod_glmm)`
     statusText: "GIS工程毕业设计课题 | 阿维尼翁大学 | 2025",
     statusColor: "muted",
     thumbnail: "/assets/img/projet_rennes.png",
-    subtitle: "担任技术与方法论负责人，构建基于高分辨率（1米）栅格地图代数的建筑屋顶垂直加层自动识别模型。在法国《净零土地人工化法》(ZAN) 及法定规划限高约束下，对雷恩大都会区 208,351 栋建筑进行了全域定量评估。",
-    excerpt: "面对新增住房刚需（每年5,000套）与 2030 年建设用地新增减半（ZAN法案）的尖锐矛盾，本课题构建了一套立体式存量用地挖潜模型：空中垂直加层（识别出 33,304 栋适宜增建建筑，释放 22 平方公里建筑容量）与地面存量循环（27 平方公里高潜力用地）。",
-    tags: ["50cm DSM/DTM", "PLUi", "ZAN Law", "Spatial SQL"],
-    summaryFooter: "雷恩大都会区 | 三维GIS空间建模 | 流程自动化 | ZAN净零法案",
+    subtitle: "担任技术与方法论负责人，构建基于高分辨率（1米）栅格地图代数的建筑屋顶垂直加层自动识别模型。结合29项指标的地面多准则综合评估，对雷恩大都会区 208,351 栋建筑进行了全域定量评估。",
+    excerpt: "面对人口增长与新增住房刚需，本课题构建了一套立体式存量用地挖潜模型：空中垂直加层（识别出 33,304 栋适宜增建建筑，释放 22 平方公里建筑容量）与地面存量循环（27 平方公里高潜力用地）。",
+    tags: ["QGIS", "R", "Spatial SQL", "50cm DSM/DTM"],
+    summaryFooter: "雷恩大都会区 | 三维GIS空间建模 | QGIS & R | 空中与地面土地潜力",
     meta: [
       { label: "课题阶段", value: "大三毕业设计 | 2025" },
       { label: "专业背景", value: "地理学与地理信息科学学士" },
       { label: "研究范围", value: "雷恩大都会区 | 43个市镇" },
-      { label: "数据精度", value: "LiDAR 50cm / 1米栅格", isMono: true }
+      { label: "工具与方法", value: "QGIS / R / Spatial SQL / LiDAR", isMono: true }
     ],
     links: {
-      pdf: "/assets/pdf/Devoir maison SIG, Rennes Métropole, Alexi, Gwendoline, Hugo, Marceau.pdf",
+      pdf: "/assets/pdf/Modélisation multi-critère & 3D du foncier de rennes métropole.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
@@ -269,47 +268,62 @@ icc(mod_glmm)`
         num: "PHASE 01",
         title: "高密度紧凑城市困境与空中土地红利",
         content: [
-          "法国《气候与韧性法案》(2021) 明确要求到 2030 年将土地开发速度减半，并在 2050 年前实现净零土地人工化 (ZAN)。在雷恩这样人口持续流入的区域中心城市，向外蔓延占用农田的发展路径已难以为继。",
-          "破局之道在于盘活“隐形空中土地”：在符合城市法定规划限高 (PLUi) 的前提下对既有建筑实施屋顶加层。我设计了一套自动化空间算法，全面扫描了雷恩大都会区 43 个市镇全部 20.8 万栋建筑。"
-        ]
+          "雷恩大都会区人口增长强劲（超46.7万居民，高企的学生与经济吸引力），根据地方住房规划（PLH）每年新增住房刚需达5,000套。在既有密集建成区内，向外水平蔓延占用农田已难以为继。",
+          "破局之道在于盘活“隐形空中土地”：在符合城市法定规划限高 (PLUi) 的前提下对既有建筑实施屋顶加层。我设计了一套自动化空间算法，全面扫描了雷恩大都会区 43 个市镇全部 208,351 栋建筑。"
+        ],
+        callout: {
+          icon: "📐",
+          title: "垂直增建富余高度测算",
+          text: "增建富余高度 = 法定规划允许最高高度 - 既有建筑实际净高。差值 ≥ 3.0米（可容纳至少一层完整居住空间）且建筑基底面积 ≥ 20平方米判定为适宜增建。"
+        }
       },
       {
         id: "geotraitement",
         num: "PHASE 02",
         title: "三维高程工程与栅格地图代数",
         content: [
-          "融合处理了法国 IGN 提供的 50cm 高精数字表面模型 (DSM) 与数字高程模型 (DTM)，并在统一坐标系下重采样至 1米分辨率。将规划限高栅格化后进行矩阵差分运算，精确提取建筑净高并筛除车库等低矮附属物（低于4米排除）。"
+          "全域统一采用 CC48 (EPSG:3948) 投影，杜绝尺度畸变。",
+          "融合处理了法国 IGN 提供的 50cm 高精数字表面模型 (DSM) 与数字高程模型 (DTM)，通过分区统计平滑屋顶噪声。将规划限高栅格化后进行矩阵差分运算，精确提取建筑净高并筛除车库等低矮附属物。"
         ],
         codeSnippet: {
-          lang: "QGIS",
-          title: "栅格计算器表达式 (CC48判定)",
+          lang: "QGIS / SQL",
+          title: "高程建模与增建富余空间提取式",
           code: `# 1. 建筑净高度提取
-building_height = ( "DSM@1" - "DTM@1" )
+building_height = ("DSM_50cm@1" - "DTM_IGN@1")
 
-# 2. 占规划法定最高限高比例
-CC48 = building_height / "H_max_PLUi@1"
+# 2. 垂直增建富余高度
+residual_height = "Max_Authorized_Height" - building_height
 
-# 3. 多准则适宜加层屋顶筛选掩模
-# - CC48 < 0.75 (至少预留出一层完整使用高度)
-# - building_height > 4米 (剔除单层车库与杂物间)
-# - 严格剔除农业保护区与自然保护区
-eligible = (CC48 < 0.75) AND (building_height > 4)
-           AND ("PLUi_Zone@1" NOT IN (1, 2))`
+# 3. 多准则适宜加层屋顶筛选
+# - 富余高度 >= 3.0米 (至少一层完整加层空间)
+# - 建筑底面积 >= 20平方米
+# - 净高 > 0.5米 (剔除噪声)
+eligible = (residual_height >= 3.0) AND ("Surface_m2" >= 20)`
         }
       },
       {
         id: "resultats",
         num: "PHASE 03",
-        title: "空间量化结果与优先级分级",
+        title: "空间量化结果与建筑存量分布",
         content: [
-          "算法在雷恩大都会区共识别出 33,304 栋适宜加层的建筑。在不侵占任何一平方米农田的前提下，理论上可满足约 23,000 套新住房的空间需求。",
-          "结合公交站点可达性、商业服务配套与历史遗产风貌保护区等综合条件进行多准则分级，筛选出 14,065 栋最高优先级建筑。仅这部分建筑即可覆盖雷恩大都会区到 2030 年规划住房目标的 60%。"
+          "算法在雷恩大都会区共识别出 33,304 栋适宜加层的建筑（占总建筑量的 16.0%）。在不侵占农田的前提下，释放出 22 平方公里潜在建筑面积。",
+          "多准则空间评价同时揭示了沿交通廊道分布的 27 平方公里地面可开发存量用地。"
         ],
         figure: {
           src: "/assets/img/projet_rennes.png",
           title: "图 1 : 三维城市模型中垂直增建潜力建筑的可视化",
           tag: "LiDAR HD / QGIS 3D / EPSG 3948",
           caption: "三维透视渲染图。青色为规划高度充裕、适宜加层的建筑，橙色为受历史保护或远离交通站点的受限建筑。"
+        },
+        table: {
+          title: "雷恩大都会区建筑存量空间分布与增建潜力",
+          headers: ["建筑类型划分", "栋数", "占比 (%)", "预估容量 / 潜力规模"],
+          rows: [
+            ["适宜实施垂直加层建筑（差值 ≥ 3米）", "33,304", "16.0%", "22 平方公里潜在建筑面积"],
+            ["规划高度已饱和或未达标建筑（< 3米）", "175,047", "84.0%", "已达到法定最高限高"],
+            ["全域评估建筑总量（43个市镇）", "208,351", "100.0%", "大都会区面积 705 平方公里"],
+            ["地面适宜开发存量用地（多准则评分）", "—", "—", "27 平方公里高潜力用地 [0-82]"]
+          ]
         }
       },
       {

@@ -69,7 +69,7 @@ export const mapProjectsZh: MapProject[] = [
     territory: "43个市镇（伊勒-维莱讷省）",
     coordinates: [48.1173, -1.6778],
     zoom: 12,
-    badge: "三维 GIS 工程 · 本科大三",
+    badge: "三维 GIS 工程 · QGIS & R",
     accent: "amber",
     date: "2025",
     metrics: [
@@ -77,8 +77,8 @@ export const mapProjectsZh: MapProject[] = [
       "自动识别出 33,304 处适宜加层的屋顶",
       "基于 50cm LiDAR 高精度 DSM/DTM 栅格地图代数"
     ],
-    description: "在法国《净零土地人工化法》(ZAN) 严格限制农地开发的背景下，构建高分辨率栅格地图代数模型，自动识别建筑垂直加层与内部填隙开发的潜在空间。",
-    clippySummary: "这是雷恩大都市区的三维空间工程！面对严控农地新增开发的 ZAN 法案，Marceau 开发了一套基于 50cm LiDAR 点云的栅格代数算法。全面扫描了 20.8 万栋建筑，成功筛选出 33,304 处可垂直增建一层的理想屋顶。",
+    description: "基于 QGIS 与 R 构建高分辨率栅格地图代数模型，自动识别建筑垂直加层与内部填隙开发的潜在空间。",
+    clippySummary: "这是雷恩大都市区的三维空间工程！Marceau 基于 QGIS 与 R 开发了 50cm LiDAR 栅格代数算法，全面扫描了 208,351 栋建筑，成功筛选出 33,304 处可垂直增建一层的理想屋顶与 27 平方公里潜在用地。",
     slug: "rennes-foncier-sig"
   }
 ];

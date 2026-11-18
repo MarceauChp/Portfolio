@@ -114,16 +114,15 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_ipa.png",
     subtitle: "시설 정원 및 수용력 데이터가 부재한 환경에서 공공서비스의 지리적 불평등을 측정하는 parsimonious 대안 지표 '접근성 압력 지수(IPA)'를 개발. 이동 거리 마찰과 인구 집중이 결합된 '공간적 이중 격차'를 모델링.",
     excerpt: "시설 용량 데이터가 제한된 환경에서 기존 2SFCA 모델의 한계를 극복하는 접근성 평가 모델로 IPA를 개발. QNEAT3 기반 실제 도로망 토폴로지, 인구 배후지 압력 및 시설 경쟁을 통합하여 아비뇽 청년층(18-24세)의 대학 접근성에 실증 적용했습니다.",
-    tags: ["R", "QNEAT3", "QGIS", "Road Network"],
+    tags: ["Python", "R", "QGIS", "QNEAT3", "Road Network"],
     summaryFooter: "아비뇽 | 18-24세 청년층 | 대학 캠퍼스 접근성",
     meta: [
       { label: "연구 상태", value: "학술지 투고를 위한 논문 집필 중" },
       { label: "연구 분야", value: "공공시설 및 이동성 지리학" },
       { label: "대상 지역", value: "그랜드 아비뇽 도시권" },
-      { label: "핵심 도구", value: "QNEAT3 도로망 분석 + R 언어" }
+      { label: "핵심 도구", value: "Python + QNEAT3 도로망 분석 + R 언어" }
     ],
     links: {
-      pdf: "/assets/pdf/Indice de Pression d'Accès (IPA), Marceau Chapon.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
@@ -182,13 +181,13 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_chaleur.png",
     subtitle: "기술 및 GIS 책임자로서 16개 지자체를 포괄하는 164쪽 분량의 기후 진단 프로젝트를 총괄. Landsat 8 지표면 온도(LST) 매핑, 50m 해상도 국지기후대(LCZ) 분류, 다변량 취약성 군집화 및 120개 IoT 미기후 센서 배치 설계.",
     excerpt: "프랑스 국가 기후적응계획(PNACC-3)에 따라 수행된 실무형 열환경 진단. 다중시기 Landsat 8 위성 열영상과 LCZ 모델링을 결합하여 상업·유통 지구가 누적 열섬 면적의 72.1%를 차지함을 규명. 130개 쿨스팟 도출 및 120개 IoT 센서 모니터링 배치를 완료했습니다.",
-    tags: ["Landsat 8", "LCZ", "QGIS Model Builder", "PostGIS", "PCA/HCA", "IoT Network"],
+    tags: ["PostgreSQL / PostGIS", "Landsat 8", "LCZ", "QGIS Model Builder", "PCA/HCA", "IoT Network"],
     summaryFooter: "16개 지자체 | 164쪽 보고서 | 120개 IoT 센서 | 50m LCZ",
     meta: [
       { label: "사업 유형", value: "공공 연구 용역 (164쪽) | 2024-2025" },
       { label: "발주처", value: "그랜드 아비뇽 도시공동체" },
       { label: "대상 지역", value: "16개 지자체 (보클뤼즈·가르 주)" },
-      { label: "주요 방법", value: "Landsat / LCZ / PCA-HCA / PostGIS", isMono: true }
+      { label: "주요 방법", value: "PostgreSQL / PostGIS / Landsat / LCZ", isMono: true }
     ],
     links: {
       pdf: "/assets/pdf/La surchauffe urbaine dans le Grand Avignon, entre îlots de fraîcheur et prévention.pdf",
@@ -249,18 +248,18 @@ icc(mod_glmm)`
     statusText: "GIS 공학 캡스톤 프로젝트 | 아비뇽 대학교 | 2025",
     statusColor: "muted",
     thumbnail: "/assets/img/projet_rennes.png",
-    subtitle: "기술 및 방법론 총괄로서 고해상도(1m) 래스터 맵 대수를 활용한 건물 수직 증축 자동 검출 모델을 설계. 프랑스 토지 인공화 제로(ZAN) 법률과 지구단위계획 규제 하에서 렌 대도시권 208,351동의 건축물을 전수 분석.",
-    excerpt: "주택 수요(연간 5,000호)와 2030년 토지 소비 반감(ZAN 법)의 충돌 속에서 기존 건축물의 상부 공간을 활용하는 수직 증축(33,304개 동, 22 km² 바닥면적 잠재력)과 수평 유휴지 순환(27 km²)을 결합한 알고리즘을 구축했습니다.",
-    tags: ["50cm DSM/DTM", "PLUi", "ZAN Law", "Spatial SQL"],
-    summaryFooter: "렌 대도시권 | 3D GIS 모델링 | 자동화 | ZAN 법",
+    subtitle: "기술 및 방법론 총괄로서 고해상도(1m) 래스터 맵 대수를 활용한 건물 수직 증축 자동 검출 모델을 설계. 29개 계수를 활용한 수평 다기준 분석과 연계하여 렌 대도시권 208,351동의 건축물을 전수 분석.",
+    excerpt: "인구 증가와 주택 수요 확대에 대응하여 기존 건축물의 상부 공간을 활용하는 수직 증축(33,304개 동, 22 km² 바닥면적 잠재력)과 수평 유휴지 순환(27 km² 잠재 부지)을 결합한 알고리즘을 구축했습니다.",
+    tags: ["QGIS", "R", "Spatial SQL", "50cm DSM/DTM"],
+    summaryFooter: "렌 대도시권 | 3D GIS 모델링 | QGIS & R | 상부·수평 유휴 부지 잠재력",
     meta: [
       { label: "프로젝트 구분", value: "학부 3년 캡스톤 | 2025" },
       { label: "전공 과정", value: "지리학 및 지리정보학 학사" },
       { label: "대상 지역", value: "렌 대도시권 | 43개 지자체" },
-      { label: "해상도", value: "LiDAR 50cm / 1m 래스터", isMono: true }
+      { label: "도구 및 방법", value: "QGIS / R / Spatial SQL / LiDAR", isMono: true }
     ],
     links: {
-      pdf: "/assets/pdf/Devoir maison SIG, Rennes Métropole, Alexi, Gwendoline, Hugo, Marceau.pdf",
+      pdf: "/assets/pdf/Modélisation multi-critère & 3D du foncier de rennes métropole.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
@@ -269,47 +268,62 @@ icc(mod_glmm)`
         num: "PHASE 01",
         title: "도시 고밀화 딜레마와 수직 잠재력",
         content: [
-          "프랑스 기후회복력법(2021)은 2030년까지 토지 개발 면적을 절반으로 줄이고 2050년까지 토지 인공화 제로(ZAN)를 달성하도록 규정합니다. 렌과 같은 성장 도시에서 외곽 농지 확장은 불가능해졌습니다.",
-          "해결책은 '보이지 않는 상부 공간'의 동원입니다. 도시계획(PLUi) 허용 최고 높이까지 추가 층 증축이 가능한 건축물을 자동 탐색하는 알고리즘을 설계하여 43개 지자체(20만 8천여 동)를 분석했습니다."
-        ]
+          "렌 대도시권은 강력한 인구 증가(46.7만 명 이상, 청년 및 학생 유입)를 겪고 있으며, 지역주택계획(PLH)에 따라 연간 5,000호의 신규 주택 공급이 필요합니다. 기성 시가지에서 외곽 수평 확장은 더 이상 지속 가능한 대안이 아닙니다.",
+          "해결책은 '보이지 않는 상부 공간'의 동원입니다. 도시계획(PLUi) 허용 최고 높이까지 추가 층 증축이 가능한 건축물을 자동 탐색하는 알고리즘을 설계하여 43개 지자체(208,351동)를 분석했습니다."
+        ],
+        callout: {
+          icon: "📐",
+          title: "수직 증축 여유 높이 산출",
+          text: "증축 여유 높이 = 법정 허용 최고 높이 - 현황 건물 높이. 여유 높이 ≥ 3.0m(최소 1개 층 주거 가능) 및 건축 면적 ≥ 20m² 건물을 적격으로 판별."
+        }
       },
       {
         id: "geotraitement",
         num: "PHASE 02",
         title: "3D 수치표고 및 래스터 맵 대수학",
         content: [
-          "IGN LiDAR HD 수치표면모델(DSM)과 수치표고모델(DTM)을 1m 해상도로 결합했습니다. 도시계획 규제 최고 높이와의 매트릭스 연산을 통해 최소 1개 층(3m 이상)의 증축 여유를 가진 건물을 추출했습니다."
+          "측지 왜곡을 방지하기 위해 CC48(EPSG:3948) 투영계로 통일.",
+          "IGN LiDAR HD 수치표면모델(DSM 50cm)과 수치표고모델(DTM)을 1m 해상도로 결합하고 구역 통계로 옥상 노이즈를 제거했습니다. 도시계획 규제 최고 높이와의 매트릭스 연산을 통해 최소 1개 층(3m 이상)의 증축 여유를 가진 건물을 추출했습니다."
         ],
         codeSnippet: {
-          lang: "QGIS",
-          title: "래스터 계산기 수식 (CC48 판별)",
+          lang: "QGIS / SQL",
+          title: "표고 모델링 및 증축 여력 검출식",
           code: `# 1. 건물 순높이 추출
-building_height = ( "DSM@1" - "DTM@1" )
+building_height = ("DSM_50cm@1" - "DTM_IGN@1")
 
-# 2. 규제 높이 대비 비율
-CC48 = building_height / "H_max_PLUi@1"
+# 2. 수직 증축 여유 높이
+residual_height = "Max_Authorized_Height" - building_height
 
-# 3. 다기준 증축 적격 마스크
-# - CC48 < 0.75 (최소 1개 층 증축 여유)
-# - building_height > 4m (차고 및 부속건물 제외)
-# - 농업 및 자연보호구역 배제
-eligible = (CC48 < 0.75) AND (building_height > 4)
-           AND ("PLUi_Zone@1" NOT IN (1, 2))`
+# 3. 다기준 증축 적격 필터링
+# - 여유 높이 >= 3.0m (최소 1개 층 증축 여유)
+# - 건물 바닥면적 >= 20m²
+# - 실제 높이 > 0.5m (노이즈 제거)
+eligible = (residual_height >= 3.0) AND ("Surface_m2" >= 20)`
         }
       },
       {
         id: "resultats",
         num: "PHASE 03",
-        title: "공간 정량화 및 우선순위 등급화",
+        title: "공간 정량화 및 건축물 분포",
         content: [
-          "알고리즘은 렌 대도시권 전역에서 33,304동의 증축 적격 건물을 검출했습니다. 신규 토지 잠식 없이 약 23,000호의 주택을 공급할 수 있는 규모입니다.",
-          "대중교통 접근성과 문화재 보호 구역을 반영한 다기준 우선순위 분류를 통해 14,065동의 최우선 건물을 특정했습니다. 이는 2030년 대도시권 주택 공급 목표의 60%에 해당합니다."
+          "알고리즘은 렌 대도시권 전역에서 33,304동의 증축 적격 건물을 검출했습니다(전체 건물의 16.0%). 신규 토지 잠식 없이 22 km²의 바닥면적 잠재력을 확보할 수 있습니다.",
+          "또한 수평 다기준 분석을 통해 대중교통 축을 따라 27 km²의 유휴 부지를 특정했습니다."
         ],
         figure: {
           src: "/assets/img/projet_rennes.png",
           title: "그림 1 : 3D 도시 모델에서의 수직 증축 적격 건물 시각화",
           tag: "LiDAR HD / QGIS 3D / EPSG 3948",
           caption: "분석된 지붕들의 3D 렌더링. 청록색은 규제 높이에 여유가 있는 건물, 주황색은 경관 보호 구역이나 대중교통 원거리 건물."
+        },
+        table: {
+          title: "렌 대도시권 건축물 재고 분포 및 증축 잠재력",
+          headers: ["건축물 구분", "동수", "비율 (%)", "추정 면적 / 잠재력"],
+          rows: [
+            ["수직 증축 적격 건물 (여유 높이 ≥ 3m)", "33,304", "16.0%", "22 km² 바닥면적 잠재력"],
+            ["규제 높이 도달 및 기준 미달 (< 3m)", "175,047", "84.0%", "법정 최고 높이 도달"],
+            ["분석 대상 전체 건물 (43개 지자체)", "208,351", "100.0%", "대도시권 면적 705 km²"],
+            ["수평 유휴 개발 잠재지 (다기준 스코어링)", "—", "—", "27 km² 잠재 부지 [0-82]"]
+          ]
         }
       },
       {

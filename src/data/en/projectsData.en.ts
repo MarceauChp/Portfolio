@@ -147,16 +147,15 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_ipa.png",
     subtitle: "Designed a parsimonious alternative to the 2SFCA framework to assess spatial disparities in public service accessibility when facility capacity data is unavailable. The IPA models territorial double jeopardy: distance friction compounded by destination demographic congestion.",
     excerpt: "The Access Pressure Index (IPA) is a robust alternative to 2SFCA models for evaluating spatial service inequalities under scarce facility supply data. It models real network friction (QNEAT3), demographic catchment pressure, and facility competition. Validated on university accessibility for youth (aged 18-24) in Avignon.",
-    tags: ["R", "QNEAT3", "QGIS", "Road Network"],
+    tags: ["Python", "R", "QGIS", "QNEAT3", "Road Network"],
     summaryFooter: "Avignon | Ages 18-24 | University Hub Access",
     meta: [
       { label: "Status", value: "Manuscript in preparation for submission" },
       { label: "Framework", value: "Public Service Geography Research" },
       { label: "Territory", value: "Greater Avignon" },
-      { label: "Core Method", value: "QNEAT3 Network Analysis + R" }
+      { label: "Core Method", value: "Python + QNEAT3 Network Analysis + R" }
     ],
     links: {
-      pdf: "/assets/pdf/Indice de Pression d'Accès (IPA), Marceau Chapon.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
@@ -215,13 +214,13 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_chaleur.png",
     subtitle: "As technical and GIS lead, I directed a 164-page municipal climate audit across 16 municipalities. The study combined Landsat 8 Land Surface Temperature (LST) mapping, Local Climate Zones (LCZ) classification at 50m resolution, multi-criteria vulnerability modeling, and the deployment blueprint for a 120-sensor IoT microclimate network.",
     excerpt: "Under France's National Climate Adaptation Plan (PNACC-3), Greater Avignon commissioned an operational thermal diagnostic across its 16 municipalities. By combining multitemporal Landsat 8 satellite thermography with LCZ modeling, the study uncovered that commercial and industrial zones account for 72.1% of cumulative heat island surface area. Resulted in 130 cool corridors mapped and a 120-sensor IoT monitoring deployment.",
-    tags: ["Landsat 8", "LCZ", "QGIS Model Builder", "PostGIS", "PCA/HCA", "IoT Network"],
+    tags: ["PostgreSQL / PostGIS", "Landsat 8", "LCZ", "QGIS Model Builder", "PCA/HCA", "IoT Network"],
     summaryFooter: "16 municipalities | 164-page report | 120 IoT sensors | LCZ at 50m",
     meta: [
       { label: "Status", value: "Public Study (164 p.) | 2024-2025" },
       { label: "Client", value: "Greater Avignon Agglomeration" },
       { label: "Territory", value: "16 municipalities (Vaucluse & Gard)" },
-      { label: "Methods", value: "Landsat / LCZ / PCA/HCA / PostGIS", isMono: true }
+      { label: "Methods", value: "PostgreSQL / PostGIS / Landsat / LCZ", isMono: true }
     ],
     links: {
       pdf: "/assets/pdf/La surchauffe urbaine dans le Grand Avignon, entre îlots de fraîcheur et prévention.pdf",
@@ -316,33 +315,33 @@ icc(mod_glmm)`
     statusText: "GIS Engineering Capstone Project | Avignon University | 2025",
     statusColor: "muted",
     thumbnail: "/assets/img/projet_rennes.png",
-    subtitle: "As technical and methodological lead, designed an automated high-resolution (1m) raster map algebra detection model for vertical building additions, coupled with a 29-coefficient horizontal multi-criteria evaluation under Zero Net Artificialization (ZAN) and local master plan constraints across 208,351 buildings in Rennes Metropolis.",
-    excerpt: "Confronting contradictory pressures between housing demand (5,000 homes/year) and France's Zero Net Artificialization law (halving land consumption by 2030), this project identifies deployable urban infill via a dual approach: aerial vertical extensions (33,304 viable buildings, yielding 22 km² of floor reserve) and horizontal land recycling (27 km² of scored developable land).",
-    tags: ["50cm DSM/DTM", "PLUi", "ZAN Law", "Spatial SQL"],
-    summaryFooter: "Rennes Metropolis | 3D GIS Modeling | Automation | ZAN Law",
+    subtitle: "As technical and methodological lead, designed an automated high-resolution (1m) raster map algebra detection model for vertical building additions, coupled with a 29-coefficient horizontal multi-criteria evaluation across 208,351 buildings in Rennes Metropolis.",
+    excerpt: "Confronting rapid demographic growth and intense housing demand in Rennes Metropolis, this project identifies deployable urban land reserves via a dual approach: aerial vertical extensions (33,304 viable buildings, yielding 22 km² of floor reserve) and horizontal land recycling (27 km² of scored developable land via multi-criteria evaluation).",
+    tags: ["QGIS", "R", "Spatial SQL", "50cm DSM/DTM"],
+    summaryFooter: "Rennes Metropolis | 3D GIS Modeling | QGIS & R | Aerial & Horizontal Infill",
     meta: [
       { label: "Status", value: "L3 Capstone | 2025" },
       { label: "Curriculum", value: "B.Sc. in Geography & Geomatics" },
       { label: "Territory", value: "Rennes Metropolis | 43 municipalities" },
-      { label: "Resolution", value: "50cm DSM/DTM | 1m Raster", isMono: true }
+      { label: "Tools & Methods", value: "QGIS / R / Spatial SQL / LiDAR", isMono: true }
     ],
     links: {
-      pdf: "/assets/pdf/Devoir maison SIG, Rennes Métropole, Alexi, Gwendoline, Hugo, Marceau.pdf",
+      pdf: "/assets/pdf/Modélisation multi-critère & 3D du foncier de rennes métropole.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
       {
         id: "problematique",
         num: "PHASE 01",
-        title: "Urban Density Dilemma & Theoretical Reserve",
+        title: "Urban Density & Infill Potential",
         content: [
-          "France's Climate & Resilience Law (2021) mandates halving land artificialization rates by 2030, targeting Zero Net Artificialization (ZAN) by 2050. In dynamic regional hubs like Rennes, continuous horizontal suburban sprawl onto agricultural land is no longer viable.",
-          "The solution lies in mobilizing invisible vertical land reserves: adding floors to existing structures up to the maximum height authorized by municipal zoning (PLUi). I designed a model to automatically scan and quantify buildings capable of supporting at least one additional story across all 43 municipalities of Rennes Metropolis (>208,000 modeled structures)."
+          "Rennes Metropolis experiences sustained demographic growth (over 467,000 residents, high student and economic influx), generating a structural demand of 5,000 housing units per year under the Local Housing Plan (PLH). In an already compact urban fabric, outward horizontal sprawl is no longer a sustainable option.",
+          "The solution lies in mobilizing invisible vertical land reserves: adding floors to existing structures up to authorized regulatory limits (aerial reserve) and identifying vacant infill parcels (horizontal reserve). I designed and automated a GIS workflow to quantify and locate buildings capable of supporting at least one additional story across all 43 municipalities (>208,000 modeled structures)."
         ],
         callout: {
           icon: "📐",
-          title: "The CC48 Infill Coefficient",
-          text: "CC48 = Actual_Building_Height / Max_Allowed_Height_PLUi. A CC48 < 0.75 indicates an available height reserve of at least 3 meters (a full habitable floor) beneath statutory zoning ceilings."
+          title: "Residual Vertical Extension Capacity",
+          text: "Residual_Capacity = Max_Authorized_Height - Actual_Building_Height. Eligible buildings feature a residual differential ≥ 3.0 m (sufficient for at least one full habitable story) and a footprint ≥ 20 m²."
         }
       },
       {
@@ -350,24 +349,24 @@ icc(mod_glmm)`
         num: "PHASE 02",
         title: "3D Altimetry & Raster Map Algebra",
         content: [
-          "Merged and resampled 50cm LiDAR Digital Surface Models (DSM) and Digital Terrain Models (DTM) from IGN at 1m resolution under RGF93 / CC48 projection (EPSG:3948).",
-          "Following rasterization of municipal PLUi height envelopes, net building heights were extracted via matrix subtraction, filtering out non-habitable annexes and garages (heights < 4m excluded)."
+          "Harmonized all spatial datasets under Conique Conforme 48 projection (CC48 - EPSG:3948) to guarantee rigorous metric precision across Ille-et-Vilaine without scale distortion.",
+          "Net building heights were extracted via matrix subtraction between high-resolution DSM (50cm, Rennes Metropolis) and DTM (RGE ALTI® IGN), using zonal statistics (mean and majority) to clean rooftop noise. Residual capacities were derived against statutory building heights.",
+          "Horizontal infill potential was modeled through 1m raster multi-criteria evaluation across 705 km², combining a strict binary exclusion mask (slopes > 8%, waterways, roads, heritage and environmental easements) with a 29-coefficient amenity scoring matrix (proximity to roads, transit, healthcare, green spaces, schools, etc.)."
         ],
         codeSnippet: {
-          lang: "QGIS",
-          title: "Raster Calculator Expression (CC48 Detection)",
+          lang: "QGIS / SQL",
+          title: "Altimetric Modeling & Residual Capacity Detection",
           code: `# 1. Net building height computation
-building_height = ( "DSM@1" - "DTM@1" )
+building_height = ("DSM_50cm@1" - "DTM_IGN@1")
 
-# 2. Ratio relative to regulatory ceiling
-CC48 = building_height / "H_max_PLUi@1"
+# 2. Residual vertical capacity
+residual_height = "Max_Authorized_Height" - building_height
 
-# 3. Multi-criteria rooftop eligibility mask
-# - CC48 < 0.75 (at least 1 habitable floor remaining)
-# - building_height > 4m (excludes garages & sheds)
-# - Strict exclusion of agricultural & natural zones
-eligible = (CC48 < 0.75) AND (building_height > 4)
-           AND ("PLUi_Zone@1" NOT IN (1, 2))`
+# 3. Multi-criteria rooftop eligibility filter
+# - Residual height >= 3.0 m (at least 1 full habitable floor)
+# - Building footprint >= 20 m²
+# - Actual height > 0.5 m (noise and artifact filtering)
+eligible = (residual_height >= 3.0) AND ("Surface_m2" >= 20)`
         },
         table: {
           title: "Spatial Datasets Used",
@@ -383,33 +382,27 @@ eligible = (CC48 < 0.75) AND (building_height > 4)
       {
         id: "resultats",
         num: "PHASE 03",
-        title: "Spatial Quantifications & Priority Classification",
+        title: "Spatial Quantifications & Building Distribution",
         content: [
-          "The algorithm detected 33,304 viable buildings across Rennes Metropolis, representing a theoretical capacity of nearly 23,000 new housing units without paving a single square meter of greenfield land. Cumulative rooftop footprint totals 22 km².",
-          "A multi-criteria prioritization across 5 classes—combining transit proximity, commercial amenities, and historical heritage perimeters—identified 14,065 high-priority buildings (classes P1 and P2). These structures alone could cover 60% of housing targets set by the metropolitan housing plan for 2030.",
-          "This capstone study assesses theoretical reserves: physical structural feasibility and co-ownership voting constraints would require subsequent architectural and financial modeling before operational groundbreak."
+          "The algorithm detected 33,304 viable buildings across the 208,351 modeled structures in the metropolis (16.0% of the building stock), representing a cumulative theoretical capacity of 22 km² in additional floor space without ground artificialization.",
+          "Horizontal multi-criteria analysis revealed 27 km² of scored developable land (equivalent to the municipal area of Versailles), concentrated along core transit corridors and infill parcels.",
+          "These findings quantify theoretical geometric and regulatory capacity: practical groundbreak requires engineering structural audits, co-ownership approvals, and thermal retrofit viability modeling."
         ],
         figure: {
           src: "/assets/img/projet_rennes.png",
-          title: "Fig. 1: 3D Visualization and Prioritization of Vertical Extension Potentials",
+          title: "Fig. 1: 3D Visualization of Vertical Extension Potentials",
           tag: "LiDAR HD / QGIS 3D / EPSG 3948",
-          caption: "Perspective rendering of analyzed rooftops. Cyan buildings possess favorable CC48 values. Amber: buildings constrained by heritage easements or distant from transit."
+          caption: "Perspective rendering of analyzed rooftops. Cyan buildings possess favorable vertical extension potential. Amber: buildings constrained by heritage easements or saturated heights."
         },
         table: {
-          title: "Distribution of Buildings by Land Priority Tier",
-          headers: ["Priority Tier", "Building Count", "Key Criteria", "Footprint Area"],
+          title: "Distribution & Potential of Building Stock in Rennes Metropolis",
+          headers: ["Building Category", "Count", "Share (%)", "Estimated Area / Potential"],
           rows: [
-            ["P1: Immediate Optimal", "4,218", "Very close to transit + CC48 < 0.5", "3.2 km²"],
-            ["P2: High Potential", "9,847", "Good transit access + CC48 < 0.75", "8.1 km²"],
-            ["P3: Moderate Potential", "11,203", "Low-density suburban fabric", "9.4 km²"],
-            ["P4: Constrained", "6,891", "Heritage protection easements", "5.3 km²"],
-            ["P5: Non-Convertible", "1,145", "Natural zones or saturated height", "1.0 km²"]
+            ["Eligible for vertical extension (residual ≥ 3m)", "33,304", "16.0%", "22 km² potential floor area"],
+            ["Saturated or sub-threshold height (< 3m)", "175,047", "84.0%", "Statutory height ceiling reached"],
+            ["Total analyzed building stock (43 municipalities)", "208,351", "100.0%", "705 km² metropolitan area"],
+            ["Horizontal developable infill reserves", "—", "—", "27 km² scored land [0-82]"]
           ]
-        },
-        infoBox: {
-          type: "emerald",
-          title: "Empirical Demonstration of ZAN Feasibility",
-          text: "This study demonstrated that Zero Net Artificialization targets do not prevent demographic vitality in growing regions, provided vertical urban capacity is mobilized methodically."
         }
       },
       {

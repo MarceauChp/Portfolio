@@ -246,7 +246,11 @@ export default function ProjectDetailPage(): React.ReactElement {
             <div className="flex flex-wrap items-center gap-3 pt-2">
               {project.links?.pdf && (
                 <a
-                  href={project.links.pdf}
+                  href={
+                    project.links.pdf.startsWith('http') || project.links.pdf.startsWith('./')
+                      ? project.links.pdf
+                      : `${import.meta.env.BASE_URL}${project.links.pdf.replace(/^\//, '')}`
+                  }
                   download
                   className="bevel-btn-primary text-xs px-4 py-2 flex items-center gap-2"
                 >

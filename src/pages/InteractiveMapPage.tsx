@@ -609,6 +609,26 @@ export default function InteractiveMapPage(): React.ReactElement {
 
   // Teleport to project
   const handleSelectProject = (project: MapProject): void => {
+    // 1. Reset and remove all vector layers from the map first to avoid layer superposition
+    Object.values(gisLayersRef.current).forEach((layer) => {
+      if (mapInstanceRef.current && mapInstanceRef.current.hasLayer(layer)) {
+        layer.remove();
+      }
+    });
+
+    setActiveGisLayers({
+      'ipa-avignon': false,
+      'lcz-avignon': false,
+      'vefa-marseille': false
+    });
+    setIsLegendOpen(false);
+    setActiveLegendLayerId(null);
+    setHiddenLegendItems({});
+
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.closePopup();
+    }
+
     setActiveProject(project);
     setIsInspectorOpen(true);
     setIsProjectsDropdownOpen(false);

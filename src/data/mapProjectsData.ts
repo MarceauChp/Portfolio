@@ -83,7 +83,7 @@ export const mapProjects: MapProject[] = [
   {
     id: "rennes-3d",
     name: "Rennes Métropole",
-    shortTitle: "Gisements fonciers 3D & ZAN",
+    shortTitle: "Gisements fonciers 3D & surélévation",
     territory: "43 communes (Ille-et-Vilaine)",
     coordinates: [48.1173, -1.6778],
     zoom: 12,
@@ -95,8 +95,8 @@ export const mapProjects: MapProject[] = [
       "33 304 constructions surélevables",
       "Algèbre raster MNS/MNT 50 cm"
     ],
-    description: "Algorithme d'analyse multicritère 3D et horizontale pour détecter le potentiel de surélévation sous contrainte du Zéro Artificialisation Nette.",
-    clippySummary: "Vous voici sur Rennes Métropole ! Face aux injonctions du Zéro Artificialisation Nette (ZAN), Marceau a développé un algorithme raster haute résolution (MNS 50 cm) qui a détecté automatiquement 33 304 bâtiments surélevables sur 208 000 bâtis modélisés.",
+    description: "Algorithme d'analyse multicritère 3D et horizontale sous QGIS et R pour détecter le potentiel de surélévation et les parcelles urbanisables.",
+    clippySummary: "Vous voici sur Rennes Métropole ! Marceau a développé un algorithme raster haute résolution (MNS 50 cm) sous QGIS et R qui a détecté automatiquement 33 304 bâtiments surélevables sur 208 351 bâtis modélisés, ainsi que 27 km² de gisements fonciers horizontaux scorés.",
     slug: "rennes-foncier-sig"
   },
   {

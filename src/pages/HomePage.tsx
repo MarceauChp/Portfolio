@@ -44,6 +44,10 @@ export default function HomePage(): React.ReactElement {
   const skillsData = getSkillsData(lang);
   const experienceData = getExperienceData(lang);
 
+  const cvUrl = profileData.contacts.cvPdf.startsWith('http') || profileData.contacts.cvPdf.startsWith('./')
+    ? profileData.contacts.cvPdf
+    : `${import.meta.env.BASE_URL}${profileData.contacts.cvPdf.replace(/^\//, '')}`;
+
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>("all");
 
   const categoryFilters = [
@@ -181,7 +185,7 @@ export default function HomePage(): React.ReactElement {
               </a>
 
               <a
-                href={profileData.contacts.cvPdf}
+                href={cvUrl}
                 download="CV_Marceau_Chapon.pdf"
                 className="bevel-btn px-4 py-2.5 text-xs flex items-center gap-2 text-terracotta hover:border-terracotta/40"
               >

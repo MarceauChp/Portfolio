@@ -69,7 +69,7 @@ export const mapProjectsKo: MapProject[] = [
     territory: "43개 지자체 (일리에빌렌 주)",
     coordinates: [48.1173, -1.6778],
     zoom: 12,
-    badge: "3D GIS 공학 · 학부 3년",
+    badge: "3D GIS 공학 · QGIS & R",
     accent: "amber",
     date: "2025",
     metrics: [
@@ -77,8 +77,8 @@ export const mapProjectsKo: MapProject[] = [
       "33,304개 증축 가능 옥상 자동 검출",
       "LiDAR HD 50cm 수치표고 래스터 대수학"
     ],
-    description: "프랑스 '토지 인공화 제로(ZAN)' 규제 하에서 추가 토지 수용 없이 건물의 수직 증축 잠재력을 자동 검출하는 고해상도 래스터 모델 개발.",
-    clippySummary: "렌 대도시권 프로젝트입니다! 신규 농지 개발을 억제하는 ZAN 법률에 대응하여 마르소는 LiDAR HD(50cm)를 활용한 래스터 맵 대수 알고리즘을 개발했습니다. 20만 8천 동의 건축물을 스캔하여 증축 가능한 33,304동의 지붕을 자동 추출했습니다.",
+    description: "QGIS와 R을 활용한 다기준 래스터 맵 대수 모델을 통해 건물의 수직 증축 잠재력과 유휴 부지를 자동 검출.",
+    clippySummary: "렌 대도시권 프로젝트입니다! 마르소는 QGIS와 R, LiDAR HD(50cm)를 활용한 래스터 맵 대수 알고리즘을 개발하여 208,351동의 건축물을 분석하고 33,304개 증축 가능 옥상과 27km²의 유휴 부지를 자동 추출했습니다.",
     slug: "rennes-foncier-sig"
   }
 ];

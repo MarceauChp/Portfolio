@@ -147,16 +147,15 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_ipa.png",
     subtitle: "J'ai conçu une méthode alternative et parcimonieuse au modèle 2SFCA pour diagnostiquer les inégalités d'accès aux services publics lorsque les données d'offre sont indisponibles. L'IPA formalise la notion de double peine territoriale : éloignement kilométrique cumulé à la saturation démographique à destination.",
     excerpt: "L'IPA est une alternative au modèle 2SFCA pour évaluer les tensions d'accès dans un contexte de données d'offre lacunaires. L'approche combine friction réseau réelle (QNEAT3), pression démographique et concurrence entre équipements. Testée sur l'accès des 18-24 ans aux pôles universitaires d'Avignon.",
-    tags: ["R", "QNEAT3", "QGIS", "Réseau viaire"],
+    tags: ["Python", "R", "QGIS", "QNEAT3", "Réseau viaire"],
     summaryFooter: "Avignon | 18-24 ans | Accès aux pôles universitaires",
     meta: [
       { label: "Statut", value: "Manuscrit en préparation pour soumission" },
       { label: "Cadre", value: "Recherche en géographie des services" },
       { label: "Territoire", value: "Avignon" },
-      { label: "Méthode principale", value: "Réseau QNEAT3 + R" }
+      { label: "Méthode principale", value: "Python + Réseau QNEAT3 + R" }
     ],
     links: {
-      pdf: "/assets/pdf/Indice de Pression d'Accès (IPA), Marceau Chapon.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
@@ -210,7 +209,7 @@ icc(mod_glmm)`
         figure: {
           src: "/assets/img/projet_ipa.png",
           title: "Fig. 1 : Isochrones réseau et modélisation spatiale de l'IPA",
-          tag: "QGIS / QNEAT3 / R",
+          tag: "Python / QGIS / QNEAT3 / R",
           caption: "Cartographie de l'IPA par IRIS. Dégradé de bleu (accessibilité fluide) à rouge (double peine d'accès). Les axes majeurs de transport structurent les corridors favorables."
         }
       },
@@ -241,13 +240,13 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_chaleur.png",
     subtitle: "En tant que responsable du pôle SIG et modélisation, j'ai piloté la chaîne géomatique complète commandée par la Direction Transition et Mobilités du Grand Avignon : télédétection Landsat multitemporelle, classification LCZ à 50 m, modélisation biométéorologique du Heat Index, et dimensionnement d'un réseau de 120 capteurs IoT.",
     excerpt: "Commandé par le Grand Avignon dans le cadre du PNACC-3, ce rapport de 164 pages couvre la cartographie thermique de surface par télédétection Landsat, la classification LCZ, l'analyse multivariée des vulnérabilités (ACP + CAH) et l'identification de 130 îlots de fraîcheur connectables. Les zones commerciales concentrent 72,1 % de la surface cumulée des îlots de chaleur.",
-    tags: ["PostGIS", "Landsat 8", "QGIS Model Builder", "LCZ"],
+    tags: ["PostgreSQL / PostGIS", "Landsat 8", "QGIS Model Builder", "LCZ"],
     summaryFooter: "Grand Avignon | Rapport 164 p. | 72,1% îlots de chaleur com. | LCZ",
     meta: [
       { label: "Cadre", value: "Commande publique (Atelier L3)" },
       { label: "Commanditaire", value: "Grand Avignon | Direction Transition" },
       { label: "Territoire", value: "Grand Avignon : 16 communes" },
-      { label: "Méthodes", value: "Landsat / LCZ / ACP/CAH / PostGIS", isMono: true }
+      { label: "Méthodes", value: "PostgreSQL / PostGIS / Landsat / LCZ", isMono: true }
     ],
     links: {
       pdf: "/assets/pdf/La surchauffe urbaine dans le Grand Avignon, entre îlots de fraîcheur et prévention.pdf",
@@ -342,18 +341,18 @@ icc(mod_glmm)`
     statusText: "Projet d'ingénierie SIG de Licence 3 | Avignon Université | 2025",
     statusColor: "muted",
     thumbnail: "/assets/img/projet_rennes.png",
-    subtitle: "En tant que responsable technique et méthodologique, j'ai conçu un modèle de détection automatisée par algèbre raster haute résolution (1 m) des bâtiments surélevables, complété par une analyse multicritère horizontale scorée sur 29 coefficients, sous contrainte ZAN et PLUi, sur les 208 351 bâtiments de la métropole rennaise.",
-    excerpt: "Face à l'injonction contradictoire entre le PLH (5 000 logements/an) et la loi ZAN (division par deux de l'artificialisation d'ici 2030), ce projet identifie les gisements fonciers mobilisables selon une double approche : aérienne (33 304 bâtiments surélevables, soit 22 km² de plancher) et horizontale (27 km² de surfaces urbanisables scorées).",
-    tags: ["MNS/MNT 50 cm", "PLUi", "ZAN", "SQL spatial"],
-    summaryFooter: "Rennes Métropole | Modélisation SIG 3D | Automatisation | ZAN",
+    subtitle: "En tant que responsable technique et méthodologique, j'ai conçu un modèle de détection automatisée par algèbre raster haute résolution (1 m) des bâtiments surélevables, complété par une analyse multicritère horizontale scorée sur 29 coefficients, sur les 208 351 bâtiments de la métropole rennaise.",
+    excerpt: "Face à la forte pression démographique et aux besoins croissants en logements sur Rennes Métropole, ce projet quantifie et localise les gisements fonciers mobilisables selon une double approche : aérienne (33 304 bâtiments surélevables identifiés, soit 22 km² de surface de plancher potentiel) et horizontale (27 km² de surfaces foncières urbanisables scorées par analyse multicritère).",
+    tags: ["QGIS", "R", "SQL spatial", "MNS/MNT 50 cm"],
+    summaryFooter: "Rennes Métropole | Modélisation SIG 3D | QGIS & R | Foncier aérien & horizontal",
     meta: [
-      { label: "Statut", value: "Projet L3 |2025" },
+      { label: "Statut", value: "Projet L3 | 2025" },
       { label: "Cadre", value: "Licence 3 Géographie | Géomatique" },
       { label: "Territoire", value: "Rennes Métropole | 43 communes" },
-      { label: "Résolution", value: "MNS/MNT 50 cm | Raster 1 m", isMono: true }
+      { label: "Outils & Méthodes", value: "QGIS / R / SQL spatial / LiDAR", isMono: true }
     ],
     links: {
-      pdf: "/assets/pdf/Devoir maison SIG, Rennes Métropole, Alexi, Gwendoline, Hugo, Marceau.pdf",
+      pdf: "/assets/pdf/Modélisation multi-critère & 3D du foncier de rennes métropole.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
@@ -362,13 +361,13 @@ icc(mod_glmm)`
         num: "PHASE 01",
         title: "Problématique",
         content: [
-          "La loi Climat & Résilience (2021) impose la division par deux du rythme d'artificialisation d'ici 2030, avant le Zéro Artificialisation Nette (ZAN) en 2050. Pour des métropoles dynamiques comme Rennes, la densification de la nappe pavillonnaire ou l'étalement sur terres agricoles n'est plus soutenable.",
-          "L'alternative consiste à mobiliser le gisement intérieur invisible : la surélévation du bâti existant dans le respect des gabarits du PLUi. J'ai voulu quantifier et localiser automatiquement, sur les 43 communes de Rennes Métropole (plus de 208 000 bâtiments modélisés), les constructions techniquement et réglementairement capables d'accueillir au moins un étage supplémentaire."
+          "Rennes Métropole connaît une dynamique démographique soutenue (plus de 467 000 habitants, forte attractivité étudiante et économique), générant une tension forte sur le logement avec un besoin de 5 000 logements par an selon le Programme Local de l'Habitat (PLH). Dans un tissu urbain déjà dense, l'étalement urbain n'est plus une solution viable.",
+          "L'alternative consiste à mobiliser le gisement foncier intérieur invisible : la surélévation du bâti existant en toiture (foncier aérien) et l'identification des dents creuses (foncier horizontal). J'ai conçu et automatisé la chaîne géomatique pour quantifier et localiser méthodologiquement, sur les 43 communes de Rennes Métropole (208 351 bâtiments modélisés), les constructions capables d'accueillir au moins un étage supplémentaire et les surfaces adéquates à l'urbanisation."
         ],
         callout: {
           icon: "📐",
-          title: "Le Coefficient de Comblement CC48",
-          text: "CC48 = Hauteur_réelle_bâti / Hauteur_maximale_PLUi. Un CC48 < 0,75 signale une réserve de hauteur d'au moins 3 mètres (un niveau habitable complet) sous le plafond réglementaire."
+          title: "Calcul de la capacité résiduelle de surélévation",
+          text: "Capacité_résiduelle = Hauteur_maximale_autorisée - Hauteur_réelle_bâti. Les bâtiments éligibles présentent un différentiel résiduel ≥ 3,0 m (permettant la création d'au moins un niveau complet habitable) et une emprise au sol ≥ 20 m²."
         }
       },
       {
@@ -376,24 +375,24 @@ icc(mod_glmm)`
         num: "PHASE 02",
         title: "Données & géo-traitement",
         content: [
-          "J'ai fusionné et rééchantillonné par interpolation bicubique à 1 m les dalles LiDAR MNS (Modèle Numérique de Surface) et MNT (Modèle Numérique de Terrain) de l'IGN sous projection RGF93 / CC48 (EPSG:3948).",
-          "Après rasterisation des zonages du PLUi de Rennes Métropole, j'ai extrait la hauteur bâtie nette par soustraction matricielle, puis filtré les artefacts et les dépendances non habitables (hauteur < 4 m exclue)."
+          "J'ai harmonisé l'ensemble des données spatiales sous projection Conique Conforme 48 (CC48 - EPSG:3948) pour garantir une précision métrique rigoureuse sans distorsion d'échelle sur l'Ille-et-Vilaine.",
+          "La hauteur réelle du bâti a été extraite par soustraction altimétrique matricielle entre le MNS haute résolution (50 cm de Rennes Métropole) et le MNT (RGE ALTI® IGN), avec calcul de statistiques zonales (moyenne et majorité) pour nettoyer les artefacts de toiture. La capacité résiduelle a été calculée en croisant ces hauteurs avec les gabarits réglementaires autorisés.",
+          "Le foncier horizontal a été modélisé par analyse multicritère raster à 1 m sur les 705 km² de l'intercommunalité, combinant un masque d'exclusion binaire strict (pentes > 8 %, cours d'eau, voiries, servitudes patrimoniales et environnementales) et une matrice d'aménités pondérée sur 29 coefficients (distance aux voiries, transports, santé, espaces verts, écoles, etc.)."
         ],
         codeSnippet: {
-          lang: "QGIS",
-          title: "Équation de calculatrice raster (détection CC48)",
-          code: `# 1. Calcul de la hauteur bâtie nette
-hauteur_bati = ( "MNS@1" - "MNT@1" )
+          lang: "QGIS / SQL",
+          title: "Modélisation altimétrique & détection de la capacité résiduelle",
+          code: `# 1. Hauteur réelle du bâti par soustraction altimétrique
+hauteur_bati = ("MNS_50cm@1" - "MNT_IGN@1")
 
-# 2. Ratio par rapport au gabarit réglementaire
-CC48 = hauteur_bati / "H_max_PLUi@1"
+# 2. Capacité résiduelle de surélévation
+hauteur_residuelle = "Hauteur_Max_PLU" - hauteur_bati
 
-# 3. Masque multicritère des toitures surélevables
-# - CC48 < 0.75 (au moins 1 niveau résiduel)
-# - hauteur_bati > 4 m (exclusion garages et annexes)
-# - Exclusion stricte des zones N et A
-surelevable = (CC48 < 0.75) AND (hauteur_bati > 4)
-              AND ("Zone_PLUi@1" NOT IN (1, 2))`
+# 3. Filtrage multicritère des toitures éligibles à la surélévation
+# - Différentiel résiduel >= 3.0 m (au moins 1 étage complet habitable)
+# - Emprise bâtie au sol >= 20 m²
+# - Hauteur réelle > 0.5 m (nettoyage des artefacts)
+surelevable = (hauteur_residuelle >= 3.0) AND ("Surface_m2" >= 20)`
         },
         table: {
           title: "Données spatiales mobilisées",
@@ -411,31 +410,25 @@ surelevable = (CC48 < 0.75) AND (hauteur_bati > 4)
         num: "PHASE 03",
         title: "Résultats & Limites",
         content: [
-          "Mon algorithme a identifié 33 304 bâtiments surélevables sur l'ensemble de la métropole rennaise, représentant un potentiel théorique de près de 23 000 logements neufs sans artificialiser un seul mètre carré de terre naturelle. L'ensemble couvre 22 km² de surface au sol.",
-          "Une classification multicritère en 5 classes de priorité, croisant accessibilité aux transports en commun, proximité des commerces et contraintes patrimoniales (périmètres ABF), a isolé 14 065 bâtiments hautement prioritaires (classes P1 et P2), représentant 11,3 km² et couvrant à eux seuls 60 % des besoins en logements programmés par le PLH à horizon 2030.",
-          "Ce travail de Licence 3 évalue un gisement théorique : il ne présume pas de la résistance mécanique des fondations ni de l'accord des copropriétés. Pour une mise en œuvre opérationnelle, ce modèle doit être prolongé par une qualification des typologies architecturales et une modélisation du bilan financier."
+          "L'analyse a identifié 33 304 bâtiments surélevables sur les 208 351 bâtiments modélisés de la métropole (soit 16,0 % du parc bâti), représentant un potentiel cumulé de 22 km² de surface de plancher supplémentaire sans consommer d'espace au sol.",
+          "L'analyse multicritère horizontale a quant à elle révélé 27 km² de surfaces foncières urbanisables scorées (l'équivalent de la superficie de la commune de Versailles), localisées prioritairement le long des corridors de transport structurants et en dents creuses.",
+          "Ces résultats évaluent un gisement géométrique et réglementaire théorique : une mise en œuvre opérationnelle nécessite de vérifier la résistance structurelle des fondations, l'accord des copropriétés et la faisabilité technico-économique de la réhabilitation thermique."
         ],
         figure: {
           src: "/assets/img/projet_rennes.png",
           title: "Fig. 1 : Modélisation 3D et classification multicritère des toitures surélevables",
           tag: "LiDAR HD / QGIS 3D / EPSG 3948",
-          caption: "Vue perspective des toitures analysées. Les bâtiments en cyan disposent d'un CC48 favorable. En ambre : bâtiments sous servitudes patrimoniales ou éloignés des réseaux de transport."
+          caption: "Vue perspective des toitures analysées. Les bâtiments en cyan disposent d'un potentiel de surélévation favorable. En ambre : bâtiments sous contraintes patrimoniales ou gabarits saturés."
         },
         table: {
-          title: "Distribution des bâtiments par classe de priorité foncière",
-          headers: ["Classe de priorité", "Nombre de bâtis", "Critère discriminant", "Surface au sol"],
+          title: "Distribution et potentiel du parc bâti de Rennes Métropole",
+          headers: ["Typologie du parc", "Nombre de bâtiments", "Part du parc (%)", "Surface / Potentiel estimé"],
           rows: [
-            ["P1 : Optimal immédiat", "4 218", "Très proche TC + CC48 < 0,5", "3,2 km²"],
-            ["P2 : Fort potentiel", "9 847", "Bonne desserte + CC48 < 0,75", "8,1 km²"],
-            ["P3 : Potentiel modéré", "11 203", "Contexte pavillonnaire diffus", "9,4 km²"],
-            ["P4 : Sous contraintes", "6 891", "Périmètre ABF / Servitudes", "5,3 km²"],
-            ["P5 : Non mutabilisable", "1 145", "Zones N / A ou gabarits saturés", "1,0 km²"]
+            ["Bâtiments éligibles à la surélévation (résiduel ≥ 3 m)", "33 304", "16,0 %", "22 km² de plancher potentiel"],
+            ["Bâtiments à hauteur saturée ou sous le seuil (< 3 m)", "175 047", "84,0 %", "Plafond réglementaire atteint"],
+            ["Total du parc bâti modélisé (43 communes)", "208 351", "100,0 %", "705 km² d'emprise métropolitaine"],
+            ["Gisements fonciers horizontaux urbanisables", "—", "—", "27 km² de surfaces scorées [0-82]"]
           ]
-        },
-        infoBox: {
-          type: "emerald",
-          title: "Démonstration de faisabilité du ZAN",
-          text: "Cette étude a démontré que la contrainte ZAN n'interdit pas le développement démographique d'une métropole régionale dynamique, pourvu que la hauteur urbaine résiduelle soit mobilisée rationnellement."
         }
       },
       {

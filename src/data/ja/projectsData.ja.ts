@@ -146,16 +146,15 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_ipa.png",
     subtitle: "施設計画・定員データが存在しない環境において、公共サービスの地理的格差を測定するための実用的な代替指標「アクセス圧力指数（IPA）」を開発。道路網摩擦と人口集中が引き起こす「空間的二重格差」をモデル化。",
     excerpt: "施設定員データが不足する地域において、従来の2SFCAモデルに代わる頑健なアクセシビリティ評価指標としてIPAを考案。QNEAT3による実道路網トポロジー経路、人口集積による需要圧力、施設間競合を統合。アヴィニョンにおける学生（18-24歳）の大学アクセスにおいて実証しました。",
-    tags: ["R", "QNEAT3", "QGIS", "Road Network"],
+    tags: ["Python", "R", "QGIS", "QNEAT3", "Road Network"],
     summaryFooter: "アヴィニョン | 18-24歳 | 大学拠点アクセシビリティ",
     meta: [
       { label: "研究状況", value: "学術誌投稿に向け原稿執筆中" },
       { label: "研究領域", value: "公共施設配置・アクセシビリティ地理学" },
       { label: "対象地域", value: "グラン・アヴィニョン都市圏" },
-      { label: "中核手法", value: "QNEAT3 ネットワーク解析 + R言語" }
+      { label: "中核手法", value: "Python + QNEAT3 ネットワーク解析 + R言語" }
     ],
     links: {
-      pdf: "/assets/pdf/Indice de Pression d'Accès (IPA), Marceau Chapon.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
@@ -214,13 +213,13 @@ icc(mod_glmm)`
     thumbnail: "/assets/img/projet_chaleur.png",
     subtitle: "技術・GIS責任者として、16自治体をカバーする164頁の気候診断を主導。Landsat 8衛星による地表面温度（LST）解析、50m解像度でのローカル気候帯（LCZ）分類、多変量社会脆弱性モデリング、および120台のIoT気候センサー網の配置計画を策定。",
     excerpt: "フランス国家気候適応計画（PNACC-3）に基づき、グラン・アヴィニョン都市共同体より委託された熱環境診断。多時期Landsat 8衛星熱画像とLCZモデリングを統合し、商業・工業地域が累積ヒートアイランド面積の72.1%を占めることを解明。130箇所のクールスポット特定と120台のIoTセンサー配置計画を策定しました。",
-    tags: ["Landsat 8", "LCZ", "QGIS Model Builder", "PostGIS", "PCA/HCA", "IoT Network"],
+    tags: ["PostgreSQL / PostGIS", "Landsat 8", "LCZ", "QGIS Model Builder", "PCA/HCA", "IoT Network"],
     summaryFooter: "16自治体 | 164頁報告書 | 120台のIoTセンサー | 50m LCZ",
     meta: [
       { label: "事業種別", value: "公的受託研究 (164頁) | 2024-2025" },
       { label: "委託機関", value: "グラン・アヴィニョン都市共同体" },
       { label: "対象地域", value: "16自治体 (ヴォクリューズ・ガール県)" },
-      { label: "主用手法", value: "Landsat / LCZ / PCA-HCA / PostGIS", isMono: true }
+      { label: "主用手法", value: "PostgreSQL / PostGIS / Landsat / LCZ", isMono: true }
     ],
     links: {
       pdf: "/assets/pdf/La surchauffe urbaine dans le Grand Avignon, entre îlots de fraîcheur et prévention.pdf",
@@ -281,18 +280,18 @@ icc(mod_glmm)`
     statusText: "GIS工学卒業研究プロジェクト | アヴィニョン大学 | 2025",
     statusColor: "muted",
     thumbnail: "/assets/img/projet_rennes.png",
-    subtitle: "技術・方法論責任者として、高解像度（1m）ラスタマップ代数を用いた建物垂直増築自動検出モデルを構築。フランス自然地不増加法（ZAN）と都市計画規制の下、レンヌ都市圏208,351棟の建物を解析。",
-    excerpt: "住宅需要（年間5,000戸）と2030年までの土地消費半減（ZAN法）の相克に対し、既存建物の空中空間を活用する垂直増築（33,304棟、22 km²の床面積潜在力）と水平充填（27 km²）を両立するアルゴリズムを開発しました。",
-    tags: ["50cm DSM/DTM", "PLUi", "ZAN Law", "Spatial SQL"],
-    summaryFooter: "レンヌ都市圏 | 3D-GISモデリング | 自動化 | ZAN法",
+    subtitle: "技術・方法論責任者として、高解像度（1m）ラスタマップ代数を用いた建物垂直増築自動検出モデルを構築。29の係数による水平多基準評価と組み合わせ、レンヌ都市圏208,351棟の建物を解析。",
+    excerpt: "人口増加と住宅需要の拡大に対し、既存建物の空中空間を活用する垂直増築（33,304棟、22 km²の床面積潜在力）と水平充填（27 km²の潜在用地）を両立するアルゴリズムを開発しました。",
+    tags: ["QGIS", "R", "Spatial SQL", "50cm DSM/DTM"],
+    summaryFooter: "レンヌ都市圏 | 3D-GISモデリング | QGIS & R | 空中・水平土地潜在力",
     meta: [
       { label: "研究種別", value: "学部3年 卒業研究 | 2025" },
       { label: "専攻課程", value: "地理学・GIS情報科学 学士" },
       { label: "対象地域", value: "レンヌ都市圏 | 43自治体" },
-      { label: "解像度", value: "LiDAR 50cm / 1m ラスタ", isMono: true }
+      { label: "ツール・手法", value: "QGIS / R / Spatial SQL / LiDAR", isMono: true }
     ],
     links: {
-      pdf: "/assets/pdf/Devoir maison SIG, Rennes Métropole, Alexi, Gwendoline, Hugo, Marceau.pdf",
+      pdf: "/assets/pdf/Modélisation multi-critère & 3D du foncier de rennes métropole.pdf",
       github: "https://github.com/MarceauChp"
     },
     sections: [
@@ -301,47 +300,62 @@ icc(mod_glmm)`
         num: "PHASE 01",
         title: "都市密度向上のジレンマと空中土地潜在力",
         content: [
-          "フランス気候・回復力法（2021）は、2030年までに農地開発を半減し、2050年までに純人工化ゼロ（ZAN）を達成することを義務付けています。レンヌのような成長都市において、郊外への水平拡大はもはや不可能です。",
-          "解決の鍵は「見えない空中土地」の活用です。各都市計画規則（PLUi）の上限高さまで増築可能な建物を自動検出するアルゴリズムを設計し、レンヌ都市圏43自治体（20万8千棟以上）を解析しました。"
-        ]
+          "レンヌ都市圏は力強い人口成長（46.7万人以上、高い学生・経済求心力）を遂げており、地域住宅計画（PLH）に基づき年間5,000戸の新築住宅供給が求められています。既成市街地において、郊外への水平拡大はもはや持続可能な選択肢ではありません。",
+          "解決の鍵は「見えない空中土地」の活用です。各都市計画規則（PLUi）の上限高さまで増築可能な建物を自動検出するアルゴリズムを設計し、レンヌ都市圏43自治体（208,351棟）を解析しました。"
+        ],
+        callout: {
+          icon: "📐",
+          title: "垂直増築余力の算出",
+          text: "増築余力 = 規制認可上限高 - 現況建物高。差分 ≥ 3.0m（1フロア居住可能）かつ建築面積 ≥ 20m²の建物を適格と判定。"
+        }
       },
       {
         id: "geotraitement",
         num: "PHASE 02",
         title: "3D標高データとラスタマップ代数",
         content: [
-          "IGNのLiDAR HDによる数値表層モデル（DSM）と数値標高モデル（DTM）を1m解像度で結合処理。都市計画の規制高さエンベロープとラスタ差分演算を行うことで、1フロア（3m以上）の増築余力を持つ建物を自動抽出しました。"
+          "データ全体の精度を担保するため、CC48（EPSG:3948）投影法に統一。",
+          "IGNのLiDAR HDによる数値表層モデル（DSM 50cm）と数値標高モデル（DTM）を1m解像度で結合処理。ゾーン統計により屋根のノイズを除去し、都市計画の規制高さエンベロープとラスタ差分演算を行うことで、1フロア（3m以上）の増築余力を持つ建物を自動抽出しました。"
         ],
         codeSnippet: {
-          lang: "QGIS",
-          title: "ラスタ計算機式 (CC48判定)",
+          lang: "QGIS / SQL",
+          title: "標高モデリングと増築余力検出式",
           code: `# 1. 純建物高の抽出
-building_height = ( "DSM@1" - "DTM@1" )
+building_height = ("DSM_50cm@1" - "DTM_IGN@1")
 
-# 2. 規制上限高に対する比率
-CC48 = building_height / "H_max_PLUi@1"
+# 2. 垂直増築余力
+residual_height = "Max_Authorized_Height" - building_height
 
-# 3. 多基準増築適格マスク
-# - CC48 < 0.75 (少なくとも1フロア分の余力)
-# - building_height > 4m (ガレージ等の除外)
-# - 農業・自然保護地区の厳格除外
-eligible = (CC48 < 0.75) AND (building_height > 4)
-           AND ("PLUi_Zone@1" NOT IN (1, 2))`
+# 3. 多基準増築適格フィルタ
+# - 残余高 >= 3.0m (少なくとも1フロア分の余力)
+# - 建物底面積 >= 20m²
+# - 実高さ > 0.5m (ノイズ除去)
+eligible = (residual_height >= 3.0) AND ("Surface_m2" >= 20)`
         }
       },
       {
         id: "resultats",
         num: "PHASE 03",
-        title: "空間定量化と優先順位階層",
+        title: "空間定量化と建物ストック分布",
         content: [
-          "アルゴリズムはレンヌ都市圏全体で33,304棟の適格建物を検出しました。これは農地を1平米も消費することなく約23,000戸の新築住宅を収容できる計算です。",
-          "公共交通機関へのアクセス性や歴史的景観規制を組み合わせた多基準優先順位付けにより、最優先建物14,065棟を特定しました。これだけで2030年までの都市圏住宅目標の60%を充足可能です。"
+          "アルゴリズムはレンヌ都市圏全体で33,304棟の適格建物を検出しました（建物ストックの16.0%）。これは農地を1平米も消費することなく22 km²の床面積潜在力を生み出す計算です。",
+          "また水平方向の多基準評価により、公共交通軸に沿った27 km²の潜在用地を特定しました。"
         ],
         figure: {
           src: "/assets/img/projet_rennes.png",
           title: "図1 : 3D都市モデルにおける増築適格建物の可視化",
           tag: "LiDAR HD / QGIS 3D / EPSG 3948",
           caption: "屋根の増築余力を示す3Dパース。水色は規制高に余裕のある建物、橙色は景観保護規制や交通不便により制約のある建物。"
+        },
+        table: {
+          title: "レンヌ都市圏における建物ストックの分布と増築潜在力",
+          headers: ["建物区分", "棟数", "シェア (%)", "推定面積 / 潜在力"],
+          rows: [
+            ["垂直増築適格建物 (差分 ≥ 3m)", "33,304", "16.0%", "22 km² の床面積潜在力"],
+            ["規制高到達・基準未満の建物 (< 3m)", "175,047", "84.0%", "法定上限高さに到達"],
+            ["解析対象全建物ストック (43自治体)", "208,351", "100.0%", "都市圏域 705 km²"],
+            ["水平市街化適地 (多基準スコアリング)", "—", "—", "27 km² の潜在用地 [0-82]"]
+          ]
         }
       },
       {

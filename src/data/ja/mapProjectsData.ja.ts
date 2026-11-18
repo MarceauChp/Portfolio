@@ -65,11 +65,11 @@ export const mapProjectsJa: MapProject[] = [
   {
     id: "rennes-3d",
     name: "レンヌ都市圏",
-    shortTitle: "3D土地潜在力 ＆ ZAN法",
+    shortTitle: "3D土地潜在力 ＆ 垂直増築",
     territory: "43自治体（イル＝エ＝ヴィレーヌ県）",
     coordinates: [48.1173, -1.6778],
     zoom: 12,
-    badge: "3D-GIS工学 · 学部3年",
+    badge: "3D-GIS工学 · QGIS & R",
     accent: "amber",
     date: "2025",
     metrics: [
@@ -77,8 +77,8 @@ export const mapProjectsJa: MapProject[] = [
       "33,304棟の増築可能屋根を自動検出",
       "LiDAR HD 50cm解像度ラスタマップ代数"
     ],
-    description: "フランスの「自然地不増加（ZAN法）」制約下において、建物の垂直増築および水平充填の潜在力を検出する多基準ラスタ代数アルゴリズムを構築。",
-    clippySummary: "レンヌ都市圏のプロジェクトです！新規農地開発を抑制するZAN法に対応し、マルソーはLiDAR HD（50cm）を用いたラスタ代数アルゴリズムを開発しました。20万8千棟の建物を解析し、増築可能な33,304棟の屋根を自動抽出しました。",
+    description: "QGISとRを用いた多基準ラスタ代数アルゴリズムにより、建物の垂直増築および水平充填の潜在力を検出。",
+    clippySummary: "レンヌ都市圏のプロジェクトです！マルソーはQGISとR、LiDAR HD（50cm）を用いたラスタ代数アルゴリズムを開発し、208,351棟の建物を解析して増築可能な33,304棟の屋根と27km²の潜在用地を自動抽出しました。",
     slug: "rennes-foncier-sig"
   }
 ];

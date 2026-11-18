@@ -88,7 +88,7 @@ export const mapProjectsEn: MapProject[] = [
     territory: "43 municipalities (Ille-et-Vilaine)",
     coordinates: [48.1173, -1.6778],
     zoom: 12,
-    badge: "3D GIS MODELING · ZAN LAW",
+    badge: "3D GIS MODELING · QGIS & R",
     accent: "rose",
     date: "2025",
     metrics: [
@@ -96,7 +96,7 @@ export const mapProjectsEn: MapProject[] = [
       "33,304 viable rooftops detected",
       "1m LiDAR DSM/DTM map algebra"
     ],
-    description: "High-resolution raster map algebra model identifying rooftop vertical additions and horizontal infill reserves under Zero Net Artificialization limits.",
+    description: "High-resolution raster map algebra model identifying rooftop vertical additions and horizontal infill reserves across Rennes Metropolis.",
     clippySummary: "Here is the 3D urban densification project for Rennes! Marceau designed a raster algebra script analyzing 208,351 buildings using LiDAR HD. It identified 33,304 viable rooftops capable of adding a new floor without greenfield development.",
     slug: "rennes-foncier-sig"
   }

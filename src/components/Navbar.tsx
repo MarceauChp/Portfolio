@@ -38,6 +38,10 @@ export default function Navbar(): React.ReactElement {
     { label: t('nav.contact', "Contact"), href: "/#contact" }
   ];
 
+  const cvUrl = profile.contacts.cvPdf.startsWith('http') || profile.contacts.cvPdf.startsWith('./')
+    ? profile.contacts.cvPdf
+    : `${import.meta.env.BASE_URL}${profile.contacts.cvPdf.replace(/^\//, '')}`;
+
   const handleNavClick = (href: string): void => {
     if (location.pathname === '/' && href.startsWith('/#')) {
       const id = href.replace('/#', '');
@@ -134,7 +138,7 @@ export default function Navbar(): React.ReactElement {
 
               {/* CV Download Button */}
               <a
-                href={profile.contacts.cvPdf}
+                href={cvUrl}
                 download="CV_Marceau_Chapon.pdf"
                 className="bevel-btn-primary text-[0.625rem] flex items-center gap-1"
               >
@@ -149,7 +153,7 @@ export default function Navbar(): React.ReactElement {
               <ThemeToggle />
 
               <a
-                href={profile.contacts.cvPdf}
+                href={cvUrl}
                 download="CV_Marceau_Chapon.pdf"
                 aria-label={t('hero.btnDownloadCv', 'Télécharger CV')}
                 className="bevel-btn-primary text-[0.5625rem] flex items-center gap-1 px-2 py-1"
@@ -223,7 +227,7 @@ export default function Navbar(): React.ReactElement {
 
               <div className="pt-2 mt-2 border-t border-bevel-mid">
                 <a
-                  href={profile.contacts.cvPdf}
+                  href={cvUrl}
                   download="CV_Marceau_Chapon.pdf"
                   className="bevel-btn-primary text-[0.6875rem] flex items-center justify-center gap-2 w-full py-2"
                 >

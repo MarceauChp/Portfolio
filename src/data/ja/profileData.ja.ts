@@ -17,6 +17,6 @@ export const profileDataJa: Profile = {
     phoneFormatted: "+33 7 69 31 05 16",
     github: "https://github.com/MarceauChp",
     linkedin: "https://www.linkedin.com/in/marceau-chapon-896b1929a/",
-    cvPdf: "/cv-marceau-chapon.pdf"
+    cvPdf: "/assets/pdf/CV_Marceau_Chapon_fr.pdf"
   }
 };
